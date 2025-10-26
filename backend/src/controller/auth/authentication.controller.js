@@ -84,10 +84,9 @@ const authController = {
       generateToken(user._id, response);
       response.status(200).json({
         success: true,
-        message: "Login User Successfully",
+        message: "User Login Successfully",
         loginUser: {
           _id: user._id,
-          password: user.password,
           email: user.email,
           profilePic: user.profilePic,
         },
@@ -99,7 +98,19 @@ const authController = {
         .json({ success: false, message: "Internal Server Error" });
     }
   },
-  logoutController: async (request, response) => {},
+  logoutController: async (request, response) => {
+    try {
+      response.cookie("jwt-token", "", { maxAge: 0 });
+      response
+        .status(200)
+        .json({ success: true, message: "User Logout Successfully" });
+    } catch (error) {
+      console.error(`Error While Loging out: ${error.message}`);
+      response
+        .status(500)
+        .json({ success: false, message: "Internal Server Error" });
+    }
+  },
 };
 
 export default authController;
