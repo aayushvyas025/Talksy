@@ -20,7 +20,7 @@ const authController = {
     }
 
     try {
-      const user = await User.findOne({email: signupInfo.email});
+      const user = await User.findOne({ email: signupInfo.email });
 
       if (user) {
         return response
@@ -62,7 +62,43 @@ const authController = {
         .json({ success: false, message: "Internal Server Error" });
     }
   },
-  loginController: async (request, response) => {},
+  loginController: async (request, response) => {
+    const loginInfo = request.body;
+    try {
+      const user = await User.findOne({ email: loginInfo.email });
+      if (!user) {
+        return response
+          .status(400)
+          .json({ success: false, message: "Invalid Credentials" });
+      }
+      const isPasswordCorrect = await bcrypt.compare(
+        loginInfo.password,
+        user.password
+      );
+      if (!isPasswordCorrect) {
+        return response
+          .status(400)
+          .json({ success: false, message: "Invalid Credentials" });
+      }
+
+      generateToken(user._id, response);
+      response.status(200).json({
+        success: true,
+        message: "Login User Successfully",
+        loginUser: {
+          _id: user._id,
+          password: user.password,
+          email: user.email,
+          profilePic: user.profilePic,
+        },
+      });
+    } catch (error) {
+      console.error(`Error While Login User: ${error.message}`);
+      response
+        .status(500)
+        .json({ success: false, message: "Internal Server Error" });
+    }
+  },
   logoutController: async (request, response) => {},
 };
 
