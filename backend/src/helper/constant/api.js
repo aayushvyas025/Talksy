@@ -6,7 +6,8 @@ const API = {
         BASE_URL:`/api/v1/auth`,
         SIGN_UP:`/signup`,
         LOGIN:`/login`,
-        LOGOUT:`/logout`
+        LOGOUT:`/logout`,
+        UPDATE_PROFILE:`/update-profile`
     },
     users:{
         BASE_URL:`/api/v1/user`

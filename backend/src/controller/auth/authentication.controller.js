@@ -111,6 +111,16 @@ const authController = {
         .json({ success: false, message: "Internal Server Error" });
     }
   },
+  updateProfile:async(request, response) => {
+    try {
+      
+      
+    } catch (error) {
+      console.error(`Error While Updating the Profile: ${error.message} `);
+      response.status(500).json({success:false, message:"Internal Server Error"}); 
+      
+    }
+  }
 };
 
 export default authController;
