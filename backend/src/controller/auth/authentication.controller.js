@@ -101,7 +101,7 @@ const authController = {
   },
   logoutController: async (request, response) => {
     try {
-      response.cookie("jwt-token", "", { maxAge: 0 });
+      response.cookie("jwt_token", "", { maxAge: 0 });
       response
         .status(200)
         .json({ success: true, message: "User Logout Successfully" });
@@ -146,9 +146,10 @@ const authController = {
   },
   userAuthenticated:async(request, response) => {
     try {
-      
+      response.status(200).json({success:true, message:"User was Authenticated", authenticatedUser:request.user}); 
     } catch (error) {
-      
+      console.error(`Error While Checking User was Authenticated: ${error.message}`); 
+      response.status(500).json({success:false, message:"Internal Server Error"}); 
     }
   }
 };

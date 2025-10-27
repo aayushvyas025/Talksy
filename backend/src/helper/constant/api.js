@@ -7,7 +7,8 @@ const API = {
         SIGN_UP:`/signup`,
         LOGIN:`/login`,
         LOGOUT:`/logout`,
-        UPDATE_PROFILE:`/update-profile`
+        UPDATE_PROFILE:`/update-profile`,
+        USER_AUTHENTICATED:`/check-auth`
     },
     users:{
         BASE_URL:`/api/v1/user`

@@ -8,7 +8,7 @@ const { jwtSecret } = envVariables;
 const authMiddleware = {
   protectedRoute: async (request, response, next) => {
     try {
-      const token = request.cookies.jwt_token;
+      const token = request.cookies?.['jwt_token'];
       if (!token) {
         return response.status(401).json({
           success: false,
@@ -27,7 +27,7 @@ const authMiddleware = {
       if (!user) {
         return response.status(404).json({ success: false, message: "No User Found" });
         
-      }; 
+      }
 
       request.user = user; 
 
