@@ -1,3 +1,4 @@
+import { cloudinary } from "../../config/index.js";
 import { generateToken } from "../../helper/index.js";
 import { User } from "../../model/index.js";
 import bcrypt from "bcryptjs";
@@ -111,13 +112,42 @@ const authController = {
         .json({ success: false, message: "Internal Server Error" });
     }
   },
-  updateProfile:async(request, response) => {
+  updateProfile: async (request, response) => {
     try {
-      
-      
+      const { profilePic } = request.body;
+      const userId = request.user._id;
+
+      if (!profilePic) {
+        return response
+          .status(400)
+          .json({ success: false, message: "Profile Picture was Required" });
+      }
+
+      const uploadResponse = await cloudinary.uploader.upload(profilePic);
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        { profilePic: uploadResponse.secure_url },
+        { new: true }
+      );
+
+      response
+        .status(200)
+        .json({
+          success: true,
+          message: "User Profile Updated Successfully",
+          updatedUser,
+        });
     } catch (error) {
       console.error(`Error While Updating the Profile: ${error.message} `);
-      response.status(500).json({success:false, message:"Internal Server Error"}); 
+      response
+        .status(500)
+        .json({ success: false, message: "Internal Server Error" });
+    }
+  },
+  userAuthenticated:async(request, response) => {
+    try {
+      
+    } catch (error) {
       
     }
   }
