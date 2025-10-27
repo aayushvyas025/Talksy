@@ -2,7 +2,8 @@ const API = {
     messages: {
         BASE_URL:`/api/v1/message`,
         GET_USERS: `/users`,
-        GET_MESSAGES:`/:id`
+        GET_MESSAGES:`/:id`,
+        CREATE_MESSAGES:`/sender/:id`
     },
     auth:{
         BASE_URL:`/api/v1/auth`,

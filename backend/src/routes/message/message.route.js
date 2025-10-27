@@ -6,9 +6,11 @@ import authMiddleware from "../../middleware/auth/authentication.middleware.js";
 const router = express.Router(); 
 const {messages} = API; 
 const {protectedRoute} = authMiddleware; 
-const {getUserForSidebarController, getMessagesController} = messagesController; 
+const {getUserForSidebarController, getMessagesController,createMessagesController} = messagesController; 
 
 
 router.get(messages.GET_USERS, protectedRoute,  getUserForSidebarController); 
 router.get(messages.GET_MESSAGES, protectedRoute, getMessagesController); 
+router.get(messages.CREATE_MESSAGES, protectedRoute,createMessagesController); 
+
 export default router; 

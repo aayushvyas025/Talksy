@@ -1,3 +1,4 @@
+import { cloudinary } from "../../config/index.js";
 import { Message, User } from "../../model/index.js";
 
 const messagesController = {
@@ -8,13 +9,11 @@ const messagesController = {
         _id: { $ne: loggedInUserId },
       }).select("-password");
 
-      response
-        .status(200)
-        .json({
-          success: true,
-          message: "Fetch All Login User",
-          filteredUsers,
-        });
+      response.status(200).json({
+        success: true,
+        message: "Fetch All Login User",
+        filteredUsers,
+      });
     } catch (error) {
       console.error(`Error While Getting User for Sidebar: ${error.message}`);
       response
@@ -33,9 +32,52 @@ const messagesController = {
         ],
       });
 
-      response.status(200).json({success:true, message:"Message Fetch Successfully", messages})
+      response
+        .status(200)
+        .json({
+          success: true,
+          message: "Message Fetch Successfully",
+          messages,
+        });
     } catch (error) {
       console.error(`Error While Fetching Message: ${error.message}`);
+      response
+        .status(500)
+        .json({ success: false, message: "Internal Server Error" });
+    }
+  },
+  createMessagesController: async (request, response) => {
+    const { id: receiverId } = request.params;
+    const { text, image } = request.body;
+    const senderId = request.user._id;
+    let imageUrl;
+
+    try {
+      if (image) {
+        const uploadResponse = await cloudinary.uploader.upload(image);
+        imageUrl = uploadResponse.secure_url;
+      }
+
+      const newMessage = new Message({
+        senderId,
+        receiverId,
+        text,
+        image: imageUrl,
+      });
+
+      await newMessage.save();
+
+      // Adding in Frontend Realtime Functionality with Socket.io
+
+      response
+        .status(201)
+        .json({
+          success: true,
+          message: "Message Created Successfully",
+          newMessage,
+        });
+    } catch (error) {
+      console.error(`Error While Creating The Message: ${error.message}`);
       response
         .status(500)
         .json({ success: false, message: "Internal Server Error" });
