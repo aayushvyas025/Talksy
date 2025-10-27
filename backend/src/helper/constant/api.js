@@ -1,6 +1,8 @@
 const API = {
     messages: {
-        BASE_URL:`/api/v1/messages`
+        BASE_URL:`/api/v1/message`,
+        GET_USERS: `/users`,
+        GET_MESSAGES:`/:id`
     },
     auth:{
         BASE_URL:`/api/v1/auth`,
@@ -9,9 +11,6 @@ const API = {
         LOGOUT:`/logout`,
         UPDATE_PROFILE:`/update-profile`,
         USER_AUTHENTICATED:`/check-auth`
-    },
-    users:{
-        BASE_URL:`/api/v1/user`
     }
 }
 

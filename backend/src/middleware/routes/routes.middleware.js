@@ -1,7 +1,7 @@
 import { API } from "../../helper/index.js"; 
-import { authRoutes, messageRoutes, userRoutes } from "../../routes/index.js";
+import { authRoutes, messageRoutes } from "../../routes/index.js";
 
-const {auth, messages, users}  = API; 
+const {auth, messages}  = API; 
 
 const routesMiddleware = {
   auth:(app) => {
@@ -9,9 +9,6 @@ const routesMiddleware = {
     },
   message:(app) => {
     app.use(messages.BASE_URL, messageRoutes)
-  },
-  user:(app) => {
-    app.use(users.BASE_URL, userRoutes)
   }
 };
 
