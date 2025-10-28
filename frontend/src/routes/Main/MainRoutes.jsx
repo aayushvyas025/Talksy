@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Pages from "../../pages";
+import { useAuthStore } from "../../store";
+import { useEffect } from "react";
 
 const {
   HomePage,
@@ -11,6 +13,10 @@ const {
 } = Pages;
 
 function MainRoutes() {
+  const {checkAuth, isCheckingAuth} = useAuthStore(); 
+  useEffect(() => {
+    checkAuth(); 
+  }, [])
   return (
     <Routes>
       <Route index="/" element={<HomePage />} />

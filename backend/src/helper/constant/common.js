@@ -9,7 +9,8 @@ const commonConstants = {
         nodeEnviornment:process.env.NODE_ENV,
         cloudinaryCloudName:process.env.CLOUDINARY_CLOUD_NAME, 
         cloudinaryApiKey:process.env.CLOUDINARY_API_KEY,
-        cloudinaryApiSecret:process.env.CLOUDINARY_API_SECRET
+        cloudinaryApiSecret:process.env.CLOUDINARY_API_SECRET,
+        frontendUrl:process.env.FRONTEND_URL
     },
     appConfig:{
         port:process.env.PORT
