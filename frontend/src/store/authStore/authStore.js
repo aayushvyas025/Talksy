@@ -22,6 +22,15 @@ const useAuthStore = create((set) => ({
       set({ isCheckingAuth: false });
     }
   },
+  signupUser:async(signupData) => {
+    try {
+      const response = await API.post(auth.SIGNUP_USER,signupData); 
+
+    } catch (error) { 
+      console.error(`Error While Signup User: ${error.message}`); 
+      
+    }
+  }
 }));
 
 export default useAuthStore;

@@ -2,7 +2,7 @@ import { Navbar } from '../../components'
 
 function MainLayout({children}) {
   return (
-    <div>
+    <div className='min-h-screen'>
         <Navbar/>
         {children}
     </div>

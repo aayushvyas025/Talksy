@@ -7,7 +7,8 @@ const commonConstant = {
   },
   apis: {
     auth: {
-         USER_AUTHENTICATED:`/auth/check-auth`
+         USER_AUTHENTICATED:`/auth/check-auth`,
+         SIGNUP_USER:`/auth/signup`
     }
 
   }
