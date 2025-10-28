@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MainLayout } from "../../layout";
 import { useAuthStore } from "../../store";
 import { helperFunctions } from "../../helper";
-import { FormComponent, LogoComponent } from "../../components";
+import { FormComponent, InputComponent, LogoComponent } from "../../components";
 
 function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +32,7 @@ function SignupPage() {
             
             {/* Form */}
             <FormComponent onClicHandler={handleFormSubmit}>
-
+             <InputComponent label={"Full Name"}/>
             </FormComponent>
           </div>
         </div>
