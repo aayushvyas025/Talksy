@@ -4,4 +4,5 @@ export {default as IconComponent} from "./Icon/IconComponent";
 export {default as FormComponent} from "./Form/FormComponent"; 
 export {default as InputComponent} from "./Input/InputComponent"; 
 export {default as LogoComponent} from "./Logo/LogoComponent"; 
+export {default as Button} from "./Button/Button";
 

@@ -2,7 +2,14 @@ import { useState } from "react";
 import { MainLayout } from "../../layout";
 import { useAuthStore } from "../../store";
 import { helperFunctions } from "../../helper";
-import { FormComponent, InputComponent, LogoComponent } from "../../components";
+import {
+  Button,
+  FormComponent,
+  IconComponent,
+  InputComponent,
+  LogoComponent,
+} from "../../components";
+import { Eye, EyeOff, Lock, Mail, User } from "lucide-react";
 
 function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,14 +32,71 @@ function SignupPage() {
   return (
     <MainLayout>
       <div className="grid lg:grid-cols-2">
-        {/* Left Side  */}
-        <div className="flex flex-cols justify-center items-center p-6 sm:p-12 ">
-          <div className="w-full max-w-md space-y-8"> 
-            <LogoComponent/>
-            
-            {/* Form */}
-            <FormComponent onClicHandler={handleFormSubmit}>
-             <InputComponent label={"Full Name"}/>
+        <div className="flex flex-col justify-center items-center p-6 sm:p-12">
+          <div className="w-full max-w-md space-y-8">
+            <LogoComponent />
+            <FormComponent onSubmitHandler={handleFormSubmit}>
+              <InputComponent
+                label={"Full Name"}
+                placeholder={"John Doe"}
+                type={"text"}
+                name={"fullname"}
+                value={signupData.fullName}
+                icon={User}
+                iconSize={5}
+                iconStyle={"text-base-content/40"}
+                onChangeHandler={(event) =>
+                  setSignupData({ ...signupData, fullName: event.target.value })
+                }
+              />
+              <InputComponent
+                label={"Email"}
+                type={"email"}
+                placeholder={"you@example.com"}
+                value={signupData.email}
+                name={"email"}
+                icon={Mail}
+                iconSize={5}
+                iconStyle={"text-base-content/40"}
+                onChangeHandler={(event) =>
+                  setSignupData({ ...signupData, email: event.target.value })
+                }
+              />
+              <InputComponent
+                label={"Password"}
+                type={showPassword ? "text" : "password"}
+                value={signupData.password}
+                placeholder={"***********"}
+                icon={Lock}
+                iconSize={5}
+                iconStyle={"text-base-content/40"}
+                onChangeHandler={(event) =>
+                  setSignupData({ ...signupData, password: event.target.value })
+                }
+                showHidePassword={
+                  <Button
+                    onClickHandler={handlerShowPassword}
+                    btnStyle={
+                      "absolute inset-y-0 right-0 pr-3 flex items-center"
+                    }
+                    btnIcon={
+                      showPassword ? (
+                        <IconComponent
+                          icon={EyeOff}
+                          iconSize={5}
+                          iconStyle={"text-base-content/40"}
+                        />
+                      ) : (
+                        <IconComponent
+                          icon={Eye}
+                          iconSize={5}
+                          iconStyle={"text-base-content"}
+                        />
+                      )
+                    }
+                  />
+                }
+              />
             </FormComponent>
           </div>
         </div>

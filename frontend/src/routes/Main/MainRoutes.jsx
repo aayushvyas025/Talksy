@@ -17,7 +17,7 @@ function MainRoutes() {
   const {checkAuth, authUser, isCheckingAuth} = useAuthStore(); 
   useEffect(() => {
     checkAuth(); 
-  }, [checkAuth]); 
+  }, []); 
 
   if(isCheckingAuth && !authUser) {
     return <LoaderComponent sizeOf={10} />
@@ -25,7 +25,7 @@ function MainRoutes() {
 
   return (
     <Routes>
-      <Route index="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
+      <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
       <Route path="/signup" element={!authUser ? <SignupPage /> : <Navigate to="/" />} />
       <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to='/'/>} />
       <Route path="/settings" element={<SettingPage />  } />

@@ -1,14 +1,16 @@
+import IconComponent from "../Icon/IconComponent";
+
 function InputComponent({
   type,
   placeholder,
   value,
   name,
-  onClickHandler,
+  onChangeHandler,
   icon,
   label,
   iconSize,
   iconStyle,
-  inputStyling
+  showHidePassword
 }) {
   return (
     <div className="form-control">
@@ -17,17 +19,24 @@ function InputComponent({
       </label>
       <div className="relative">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <InputComponent icon={icon} iconSize={iconSize} iconStyle={iconStyle} />
+          {icon && (
+            <IconComponent
+              icon={icon}
+              iconSize={iconSize}
+              iconStyle={iconStyle}
+            />
+          )}
         </div>
+        <input
+          className={`input input-bordered w-full pl-10`}
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          name={name}
+          onChange={onChangeHandler}
+        />
+        {showHidePassword}
       </div>
-      <input
-      className={`input input-border ${inputStyling} pl-10`}
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        name={name}
-        onClick={onClickHandler}
-      />
     </div>
   );
 }
