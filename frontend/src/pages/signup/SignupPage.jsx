@@ -21,7 +21,8 @@ function SignupPage() {
     password: "",
   });
   const { signupUser, isSigningUp } = useAuthStore();
-  const { validateSignupForm } = helperFunctions;
+  const { validations } = helperFunctions;
+  const {validateSignupForm} = validations;
 
   function handlerShowPassword() {
     setShowPassword(!showPassword);

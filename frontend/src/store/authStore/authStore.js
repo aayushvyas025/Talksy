@@ -1,11 +1,12 @@
 import { create } from "zustand";
 import { API } from "../../config";
-import { commonConstant } from "../../helper";
-import toast from "react-hot-toast";
+import { commonConstant, helperFunctions } from "../../helper";
+
 
 const { apis } = commonConstant;
 const { auth } = apis;
-
+const {handleApi} = helperFunctions;
+const {handleApiSuccess, handleApiError} = handleApi; 
 
 const useAuthStore = create((set) => ({
   authUser: null,
@@ -28,14 +29,13 @@ const useAuthStore = create((set) => ({
     set({isSigningUp:true});
     try {
       const response = await API.post(auth.SIGNUP_USER,signupData); 
-      console.log(response)
       set({authUser:response?.data?.user}); 
-      toast.success("User Signup Successfully");
+      handleApiSuccess("User Signup Successfully");
      
     } catch (error) { 
       set({isSigningUp:false});
       console.error(`Error While Signup User: ${error.message}`); 
-      toast.error(error.response?.data?.message); 
+      handleApiError(error.response?.data?.message); 
     }finally {
       set({isSigningUp:false});
     }
@@ -45,10 +45,10 @@ const useAuthStore = create((set) => ({
     try {
       const response = await API.post(auth.LOGIN_USER, loginData); 
       set({authUser:response?.data?.loginUser});
-      toast.success("User Login Successfully");
+      handleApiSuccess("User Login Successfully");
     } catch (error) {
       console.error(`Error While Login User ${error.message}`);
-      toast.error(error?.response?.data?.message);
+      handleApiError(error?.response?.data?.message);
       set({authUser:null})
     }finally{
       set({isLoggingIn:false})
@@ -56,13 +56,26 @@ const useAuthStore = create((set) => ({
   },
   logoutUser:async() => {
     try {
-      const response = await API.post(auth.LOGOUT_USER); 
+       await API.post(auth.LOGOUT_USER); 
       set({authUser:null});
-      toast.success("User Logout Successfully"); 
+      handleApiSuccess("User Logout Successfully"); 
     } catch (error) {
       console.error(`User Logout Successfully ${error.message}`);
-      toast.error(response.data.message)
+      handleApiError(response.data.message)
       
+    }
+  },
+  updateUserProfile:async (userData) => {
+    set({isUpdatingProfile:true}); 
+    try {
+      const response = await API.put(auth.UPDATE_PROFILE, userData);
+      set({authUser: response?.data?.updatedUser});
+      handleApiSuccess("User Update Profile Succesfully");
+    } catch (error) {
+      console.error(`Error While Updating User Profile ${error.message}`);
+      handleApiError(error?.response?.data?.message) 
+    }finally {
+      set({isUpdatingProfile : false})
     }
   }
 }));

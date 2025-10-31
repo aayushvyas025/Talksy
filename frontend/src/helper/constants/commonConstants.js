@@ -1,4 +1,4 @@
-const commonConstant = {
+const commonConstant = Object.freeze({
   envVariables: {
     backendUrl:
       import.meta.env.VITE_FRONTEND_MODE === "development"
@@ -10,10 +10,16 @@ const commonConstant = {
          USER_AUTHENTICATED:`/auth/check-auth`,
          SIGNUP_USER:`/auth/signup`,
          LOGOUT_USER:`/auth/logout`,
-         LOGIN_USER:`/auth/login`
+         LOGIN_USER:`/auth/login`,
+         UPDATE_PROFILE:`/auth/update-profile`
+    },
+    messages: {
+       GET_USERS:`/message/users`,
+        GET_MESSAGES:(id) => `/message/${id}`,
+        CREATE_MESSAGES:(id) => `/message/sender/${id}`
     }
 
   }
-};
+});
 
 export default commonConstant;

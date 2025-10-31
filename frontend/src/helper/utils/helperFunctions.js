@@ -1,36 +1,44 @@
 import toast from "react-hot-toast";
 
 const helperFunctions = {
-  validateSignupForm: (formData) => {
+  validations: {
+    validateSignupForm: (formData) => {
+      if (!formData.fullName.trim()) {
+        return toast.error("Full Name is Required");
+      }
+      if (!/\S+@\S+\.\S+/.test(formData.email.trim())) {
+        return toast.error("Email Should be Required");
+      }
+      if (!formData.password.trim()) {
+        return toast.error("Password Should be Required");
+      }
+      if (formData.password.length < 6) {
+        return toast.error("Password must be at least 6 characters");
+      }
 
-    if (!formData.fullName.trim()) {
-      return toast.error("Full Name is Required");
-    } 
-    if (!/\S+@\S+\.\S+/.test(formData.email.trim())) {
-      return toast.error("Email Should be Required");
-    } 
-     if (!formData.password.trim()) {
-      return toast.error("Password Should be Required");
-    }
-    if(formData.password.length < 6) {
-      return toast.error("Password must be at least 6 characters"); 
-    }
+      return true;
+    },
+    validateLoginForm: (formData) => {
+      if (!/\S+@\S+\.\S+/.test(formData.email.trim())) {
+        return toast.error("Email Should be Required");
+      }
+      if (!formData.password.trim()) {
+        return toast.error("Password Should be Required");
+      }
+      if (formData.password.length < 6) {
+        return toast.error("Password must be at least 6 characters");
+      }
 
-    return true; 
+      return true;
+    }
   },
-  validateLoginForm:(formData) => {
-   if (!/\S+@\S+\.\S+/.test(formData.email.trim())) {
-      return toast.error("Email Should be Required");
-    } 
-     if (!formData.password.trim()) {
-      return toast.error("Password Should be Required");
+  handleApi: {
+    handleApiSuccess:(success) => {
+      toast.success(success)
+    },
+    handleApiError:(error) => {
+      toast.error(error)
     }
-    if(formData.password.length < 6) {
-      return toast.error("Password must be at least 6 characters"); 
-    }
-
-    return true;
-
   }
 };
 

@@ -20,7 +20,8 @@ function LoginPage() {
     password: "",
   });
   const { loginUser, isLoggingIn } = useAuthStore();
-  const { validateLoginForm } = helperFunctions;
+  const { validations } = helperFunctions;
+  const {validateLoginForm} = validations;
 
   function handlerShowPassword() {
     setShowPassword(!showPassword);
