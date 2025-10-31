@@ -21,7 +21,7 @@ function SignupPage() {
     password: "",
   });
   const { signupUser, isSigningUp } = useAuthStore();
-  const { validateForm } = helperFunctions;
+  const { validateSignupForm } = helperFunctions;
 
   function handlerShowPassword() {
     setShowPassword(!showPassword);
@@ -30,7 +30,7 @@ function SignupPage() {
   function handleFormSubmit(event) {
     event.preventDefault();
 
-    const success = validateForm(signupData);
+    const success = validateSignupForm(signupData);
     if (success === true) {
       signupUser(signupData);
     }

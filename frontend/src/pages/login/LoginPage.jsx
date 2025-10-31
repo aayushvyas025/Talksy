@@ -20,7 +20,7 @@ function LoginPage() {
     password: "",
   });
   const { loginUser, isLoggingIn } = useAuthStore();
-  const { validateForm } = helperFunctions;
+  const { validateLoginForm } = helperFunctions;
 
   function handlerShowPassword() {
     setShowPassword(!showPassword);
@@ -28,11 +28,13 @@ function LoginPage() {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    const success = validateForm(loginData);
-    if (success === "true") {
-      loginUser(loginData);
+
+   const success = validateLoginForm(loginData);
+    if (success === true) {
+      return loginUser(loginData);
     }
   }
+
   return (
     <MainLayout>
       <div className="grid lg:grid-cols-2">
@@ -111,9 +113,9 @@ function LoginPage() {
             </FormComponent>
             <div className="text-center">
               <div className="text-base-content/60">
-                Not have an account ?
-                <Link to="/login" className="link link-primary">
-                  Sign up{" "}
+                Don't have an account ?
+                <Link to="/signup" className="link link-primary">
+                  Create Account{" "}
                 </Link>
               </div>
             </div>
