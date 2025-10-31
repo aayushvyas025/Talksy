@@ -9,7 +9,8 @@ const commonConstant = {
     auth: {
          USER_AUTHENTICATED:`/auth/check-auth`,
          SIGNUP_USER:`/auth/signup`,
-         LOGOUT_USER:`/auth/logout`
+         LOGOUT_USER:`/auth/logout`,
+         LOGIN_USER:`/auth/login`
     }
 
   }

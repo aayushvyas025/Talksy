@@ -40,6 +40,20 @@ const useAuthStore = create((set) => ({
       set({isSigningUp:false});
     }
   },
+  loginUser:async(loginData) => {
+    set({isLoggingIn:true});
+    try {
+      const response = await API.post(auth.LOGIN_USER, loginData); 
+      set({authUser:response?.data?.loginUser});
+      toast.success("User Login Successfully");
+    } catch (error) {
+      console.error(`Error While Login User ${error.message}`);
+      toast.error(error?.response?.data?.message);
+      set({authUser:null})
+    }finally{
+      set({isLoggingIn:false})
+    }
+  },
   logoutUser:async() => {
     try {
       const response = await API.post(auth.LOGOUT_USER); 
