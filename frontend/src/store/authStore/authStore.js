@@ -3,7 +3,7 @@ import { API } from "../../config";
 import { commonConstant } from "../../helper";
 import toast from "react-hot-toast";
 
-const { apis,envVariables } = commonConstant;
+const { apis } = commonConstant;
 const { auth } = apis;
 
 

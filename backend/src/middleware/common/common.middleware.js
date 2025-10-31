@@ -15,7 +15,7 @@ const commonMiddleware = {
     },
     corsConnection:(app) => {
         app.use(cors({
-           orign:frontendUrl,
+           origin:frontendUrl,
            credentials:true  
         }))
     }
