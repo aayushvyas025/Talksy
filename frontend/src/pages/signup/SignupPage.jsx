@@ -29,6 +29,11 @@ function SignupPage() {
 
   function handleFormSubmit(event) {
     event.preventDefault();
+
+    const success = validateForm(signupData);
+    if (success === true) {
+      signupUser(signupData);
+    }
   }
 
   return (
@@ -77,6 +82,7 @@ function SignupPage() {
                 }
                 showHidePassword={
                   <Button
+                  btnType="button"
                     onClickHandler={handlerShowPassword}
                     btnStyle={
                       "absolute inset-y-0 right-0 pr-3 flex items-center"
