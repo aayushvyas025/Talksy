@@ -2,6 +2,7 @@ import IconComponent from "../Icon/IconComponent";
 
 function InputComponent({
   type,
+  acceptImage,
   placeholder,
   value,
   name,

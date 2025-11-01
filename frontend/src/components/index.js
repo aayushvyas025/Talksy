@@ -7,3 +7,4 @@ export {default as LogoComponent} from "./Logo/LogoComponent";
 export {default as Button} from "./Button/Button";
 export {default as AuthImagePattern} from "./Auth Image Pattern/AuthImagePattern"; 
 export {default as LinkComponent} from "./Link/LinkComponent"; 
+export {default as AvatarImageComponent} from "./Avatar Image Component/AvatarImageComponent";
