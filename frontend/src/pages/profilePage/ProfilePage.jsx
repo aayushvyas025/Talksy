@@ -1,13 +1,12 @@
-import { AvatarImageComponent, UserInfoComponent } from "../../components";
+import { AvatarImageComponent, LoaderComponent, UserInfoComponent } from "../../components";
 import { MainLayout } from "../../layout";
 import { useAuthStore } from "../../store";
 import imagePlaceHolder from "../../../public/avatar.png";
 import { Mail, User } from "lucide-react";
 import { useState } from "react";
 function ProfilePage() {
-  const { authUser, isUpdatingProfile, updateUserProfile } = useAuthStore();
+  const { authUser, isUpdatingProfile, updateUserProfile,isCheckingAuth } = useAuthStore();
   const [selectedImage, setSelectedImage] = useState(null); 
-  const {authenticatedUser} = authUser
 
   async function handleUploadImage(event) {
     const file = event.target.files[0]; 
@@ -21,7 +20,9 @@ function ProfilePage() {
       await updateUserProfile({profilePic:base64Image});
     }
 
-  }
+  } 
+
+
 
   return (
     <MainLayout>
@@ -40,13 +41,13 @@ function ProfilePage() {
             <div className="space-y-6">
               <UserInfoComponent
                 userTitle={"FullName"}
-                userInfo={authenticatedUser?.fullName}
+                userInfo={authUser?.authenticatedUser?.fullName}
                 icon={User}
                 iconSize={4}
               />
               <UserInfoComponent
                 userTitle={"Email"}
-                userInfo={authenticatedUser?.email}
+                userInfo={authUser?.authenticatedUser?.email}
                 iconSize={4}
                 icon={Mail}
               />

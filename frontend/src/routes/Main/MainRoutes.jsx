@@ -17,7 +17,7 @@ function MainRoutes() {
   const {checkAuth, authUser, isCheckingAuth} = useAuthStore(); 
   useEffect(() => {
     checkAuth(); 
-  }, [isCheckingAuth]); 
+  }, []); 
 
   if(isCheckingAuth && !authUser) {
     return <LoaderComponent sizeOf={10} />
