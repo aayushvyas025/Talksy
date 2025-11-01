@@ -69,7 +69,15 @@ const useAuthStore = create((set) => ({
     set({isUpdatingProfile:true}); 
     try {
       const response = await API.put(auth.UPDATE_PROFILE, userData);
-      set({authUser: response?.data?.updatedUser});
+       set((state) => ({
+      authUser: {
+        ...state.authUser,
+       authenticatedUser: {
+          ...state.authUser?.authenticatedUser,
+          ...response?.data?.updatedUser,
+        },
+      },
+    }));
       handleApiSuccess("User Update Profile Succesfully");
     } catch (error) {
       console.error(`Error While Updating User Profile ${error.message}`);
