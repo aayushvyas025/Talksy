@@ -41,7 +41,8 @@ function AvatarImageComponent({
         {updtProfileState
           ? "Uploading..."
           : "Click the camera icon to update your photo"}
-      </p>
+      </p> 
+      
     </div>
   );
 }

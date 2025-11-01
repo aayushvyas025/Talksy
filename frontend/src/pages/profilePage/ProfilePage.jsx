@@ -1,9 +1,12 @@
-import { AvatarImageComponent } from "../../components";
+import { AvatarImageComponent, UserInfoComponent } from "../../components";
 import { MainLayout } from "../../layout";
 import { useAuthStore } from "../../store";
-import imagePlaceHolder from "../../../public/avatar.png"; 
+import imagePlaceHolder from "../../../public/avatar.png";
+import { Mail, User } from "lucide-react";
 function ProfilePage() {
   const { authUser, isUpdatingProfile, updateUserProfile } = useAuthStore();
+
+  const { authenticatedUser } = authUser;
 
   async function handleUploadImage(event) {
     event.preventDefault();
@@ -19,10 +22,19 @@ function ProfilePage() {
               <p className="mt-2">Your Profile Information</p>
             </div>
             <AvatarImageComponent
-              imageSrc={authUser.profilePic || imagePlaceHolder}
+              imageSrc={authenticatedUser.profilePic || imagePlaceHolder}
               updtProfileState={isUpdatingProfile}
               onChangeHandler={handleUploadImage}
             />
+            <div className="space-y-6">
+              <UserInfoComponent
+                userTitle={"FullName"}
+                userInfo={authenticatedUser?.fullName}
+                icon={User}
+                iconSize={4}
+              />
+              <UserInfoComponent userTitle={"Email"} userInfo={authenticatedUser?.email} iconSize={4} icon={Mail} />
+            </div>
           </div>
         </div>
       </div>
