@@ -1,4 +1,4 @@
-import { Sidebar } from "../../components";
+import { ChatContainer, NoChatSelectedComponent, Sidebar } from "../../components";
 import { HomePageLayout } from "../../layout";
 import { useChatStore } from "../../store"
 
@@ -7,7 +7,7 @@ function HomePage() {
   return (
     <HomePageLayout>
       <Sidebar/>
-      {!selectedUser ? "No Chat Component" : "Chat Component"}
+      {!selectedUser ? <NoChatSelectedComponent/> : <ChatContainer/>}
 
     </HomePageLayout>
   )
