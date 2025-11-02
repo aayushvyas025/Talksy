@@ -1,8 +1,15 @@
-import { MainLayout } from "../../layout"
+import { Sidebar } from "../../components";
+import { HomePageLayout } from "../../layout";
+import { useChatStore } from "../../store"
 
 function HomePage() {
+  const {selectedUser} = useChatStore(); 
   return (
-    <MainLayout></MainLayout>
+    <HomePageLayout>
+      <Sidebar/>
+      {!selectedUser ? "No Chat Component" : "Chat Component"}
+
+    </HomePageLayout>
   )
 }
 

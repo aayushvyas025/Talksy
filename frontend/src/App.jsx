@@ -6,7 +6,7 @@ function App() {
 const {theme} = useThemeStore(); 
 
   return (
-    <div data-theme={theme}>
+    <div data-theme={theme} className="h-screen-full">
        <MainRoutes />
     </div>
   )

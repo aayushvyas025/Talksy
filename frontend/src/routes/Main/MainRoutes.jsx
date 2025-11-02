@@ -24,7 +24,7 @@ function MainRoutes() {
   }
 
   return (
-    <Suspense>
+    
 
     <Routes fallback={<p>Loading...</p>}>
       <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
@@ -34,7 +34,6 @@ function MainRoutes() {
       <Route path="/profile" element={authUser ?  <ProfilePage /> : <Navigate to="/login" />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
-    </Suspense>
   );
 }
 
