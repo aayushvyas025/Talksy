@@ -9,3 +9,4 @@ export {default as AuthImagePattern} from "./Auth Image Pattern/AuthImagePattern
 export {default as LinkComponent} from "./Link/LinkComponent"; 
 export {default as AvatarImageComponent} from "./Avatar Image Component/AvatarImageComponent";
 export {default as UserInfoComponent} from './User Info Component/UserInfoComponent'; 
+export {default as ChatPreviewComponent} from "./Chat Preview/ChatPreviewComponent";

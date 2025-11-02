@@ -19,7 +19,44 @@ const commonConstant = Object.freeze({
         CREATE_MESSAGES:(id) => `/message/sender/${id}`
     }
 
-  }
+  },
+  applicationThemes: [
+    "light",
+      "dark",
+      "cupcake",
+      "bumblebee",
+      "corporate",
+      "synthwave",
+      "retro",
+      "cyberpunk",
+      "valentine",
+      "halloween",
+      "garden",
+      "forest",
+      "aqua",
+      "lofi",
+      "pastel",
+      "fantasy",
+      "wireframe",
+      "black",
+      "luxury",
+      "dracula",
+      "cmyk",
+      "autumn",
+      "business",
+      "acid",
+      "lemonade",
+      "night",
+      "coffee",
+      "winter",
+      "dim",
+      "nord",
+      "sunset",
+  ],
+  previewMessages:[
+    {id:1, content:"Hey! How it's going?", isSent:false},
+    {id:2, content:"I'm doing great! Just working on some new features.", isSent:false}
+  ]
 });
 
 export default commonConstant;

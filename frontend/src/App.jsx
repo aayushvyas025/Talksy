@@ -1,9 +1,14 @@
 import { MainRoutes } from "./routes"
+import { useThemeStore } from "./store"
 
 
 function App() {
+const {theme} = useThemeStore(); 
+
   return (
-    <MainRoutes />
+    <div data-theme={theme}>
+       <MainRoutes />
+    </div>
   )
 }
 
