@@ -17,7 +17,7 @@ const useAuthStore = create((set) => ({
   checkAuth: async () => {
     try {
       const response = await API.get(auth.USER_AUTHENTICATED);
-      set({ authUser: response.data });
+      set({ authUser: response?.data?.authenticatedUser });
     } catch (error) {
       set({ authUser: null });
       console.error(`Error While Checking Auth: ${error.message}`);
@@ -69,15 +69,7 @@ const useAuthStore = create((set) => ({
     set({isUpdatingProfile:true}); 
     try {
       const response = await API.put(auth.UPDATE_PROFILE, userData);
-       set((state) => ({
-      authUser: {
-        ...state.authUser,
-       authenticatedUser: {
-          ...state.authUser?.authenticatedUser,
-          ...response?.data?.updatedUser,
-        },
-      },
-    }));
+      set({authUser:response?.data?.updatedUser})
       handleApiSuccess("User Update Profile Succesfully");
     } catch (error) {
       console.error(`Error While Updating User Profile ${error.message}`);

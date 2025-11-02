@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Pages from "../../pages";
 import { useAuthStore } from "../../store";
-import { useEffect } from "react";
+import { useEffect,Suspense } from "react";
 import { LoaderComponent } from "../../components";
 
 const {
@@ -24,7 +24,9 @@ function MainRoutes() {
   }
 
   return (
-    <Routes>
+    <Suspense>
+
+    <Routes fallback={<p>Loading...</p>}>
       <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
       <Route path="/signup" element={!authUser ? <SignupPage /> : <Navigate to="/" />} />
       <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to='/'/>} />
@@ -32,6 +34,7 @@ function MainRoutes() {
       <Route path="/profile" element={authUser ?  <ProfilePage /> : <Navigate to="/login" />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
+    </Suspense>
   );
 }
 
