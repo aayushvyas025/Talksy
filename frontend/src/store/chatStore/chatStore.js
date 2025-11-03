@@ -14,14 +14,14 @@ const useChatStore = create((set) => ({
   selectedUsers: null,
   isUserLoading: false,
   isMessagesLoading: false,
+  setSelectedUser:(selectedUser) => set({selectedUser}),
   getUsersFromDB: async () => {
     set({ isUserLoading: true });
     try {
      const response = await API.get(messages.GET_USERS);
-     console.log(response)
      set({users:response?.data?.filteredUsers});
     } catch (error) {
-      console.error(`Error While Fetching Users: ${error.message}`);
+      console.error(`Error While Fetching  Users: ${error.message}`);
       handleApiError(error?.response?.data?.message);
     } finally {
       set({ isUserLoading: false });
@@ -39,7 +39,7 @@ const useChatStore = create((set) => ({
     }finally {
         set({isUserLoading : false}); 
     }
-  }
+  },
 }));
 
 export default useChatStore;

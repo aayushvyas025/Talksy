@@ -13,3 +13,4 @@ export {default as ChatPreviewComponent} from "./Chat Preview/ChatPreviewCompone
 export {default as Sidebar} from "./Sidebar/Sidebar";
 export {default as NoChatSelectedComponent} from "./NoChatSelected/NoChatSelectedComponent";
 export {default as ChatContainer} from "./ChatContainer/ChatContainer";
+export {default as SidebarSkeleton} from "./Sidebar Skeleton/SidebarSkeleton";
