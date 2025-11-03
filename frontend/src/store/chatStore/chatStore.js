@@ -10,7 +10,7 @@ const { handleApiSuccess, handleApiError } = handleApi;
 
 const useChatStore = create((set) => ({
   messages: [],
-  users: [],
+  users: [],  
   selectedUsers: null,
   isUserLoading: false,
   isMessagesLoading: false,
@@ -19,6 +19,7 @@ const useChatStore = create((set) => ({
     set({ isUserLoading: true });
     try {
      const response = await API.get(messages.GET_USERS);
+     console.log(response?.data?.filteredUsers)
      set({users:response?.data?.filteredUsers});
     } catch (error) {
       console.error(`Error While Fetching  Users: ${error.message}`);

@@ -57,10 +57,6 @@ const commonConstant = Object.freeze({
     {id:1, content:"Hey! How it's going?", isSent:false},
     {id:2, content:"I'm doing great! Just working on some new features.", isSent:false}
   ],
-  sidebar: {
-    onlineUsers:[]
-
-  }
 });
 
 export default commonConstant;
