@@ -1,5 +1,5 @@
 import React from "react";
-import imagePlaceholder from "../../../public/avatar.png";
+import imagePlaceholder from "/avatar.png"
 
 function ProfilePictureComponent({ message, authUser, selectedUser }) {
   return (

@@ -4,7 +4,7 @@ import {
 } from "../../components";
 import { MainLayout } from "../../layout";
 import { useAuthStore } from "../../store";
-import imagePlaceHolder from "../../../public/avatar.png";
+import imagePlaceHolder from "/avatar.png";
 import { Mail, User } from "lucide-react";
 import { useState } from "react";
 function ProfilePage() {

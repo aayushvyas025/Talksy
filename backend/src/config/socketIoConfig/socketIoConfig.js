@@ -16,4 +16,12 @@ const socketIo = new Server(server, {
     }
 }); 
 
+socketIo.on("connection", (socket) => {
+  console.log(`User connected`, socket.id) ;
+  socket.on("disconnected", () => {
+    console.log(`A user disconnected`,socket.io)
+  })
+
+})
+
 export default {app, server, socketIo}

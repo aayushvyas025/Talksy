@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import imagePlaceHolder from "../../../public/avatar.png";
+import imagePlaceHolder from "/avatar.png";
 import { useAuthStore, useChatStore } from "../../store";
 import { commonConstant } from "../../helper";
 import SidebarSkeleton from "../Skeleton Component/SidebarSkeleton";
