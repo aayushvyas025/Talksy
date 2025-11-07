@@ -1,0 +1,9 @@
+import React from 'react'
+
+function TextComponent({text}) {
+  return (
+    <p>{text}</p>
+  )
+}
+
+export default TextComponent

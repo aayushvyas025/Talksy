@@ -1,8 +1,8 @@
 import React from 'react'
 
-function ImageComponent() {
+function ImageComponent({image}) {
   return (
-    <div>ImageComponent</div>
+    <img src={image} alt="Attachment" className='sm:max-w-[200px] rounded-md mb-2' />
   )
 }
 
