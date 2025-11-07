@@ -36,7 +36,7 @@ const useChatStore = create((set) => ({
         console.error(`Error While Fetching Messages: ${error.message}`); 
         handleApiError(error?.response?.data?.message);      
     }finally {
-        set({isUserLoading : false}); 
+       set({ isMessagesLoading: false });
     }
   },
 }));

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useChatStore } from "../../store";
-import TextLoading from "../Text Loader/TextLoading";
 import ChatHeader from "./ChatHeader";
 import MessageInput from "../Input Component/MessageInput";
 import ChatLoader from "../Loader/ChatLoader";
@@ -13,7 +12,7 @@ function ChatContainer() {
     getUsersMessages(selectedUser._id);
   }, [selectedUser._id, getUsersMessages]);
 
-  if(!isMessagesLoading) {
+  if(isMessagesLoading) {
     return <ChatLoader/>
   }
 
