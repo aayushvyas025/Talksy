@@ -1,4 +1,3 @@
-import React from "react";
 import imagePlaceholder from "/avatar.png"
 
 function ProfilePictureComponent({ message, authUser, selectedUser }) {

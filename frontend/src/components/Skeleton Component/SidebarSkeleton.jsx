@@ -1,4 +1,3 @@
-import React from 'react'
 import IconComponent from '../Icon Component/IconComponent';
 import { User } from 'lucide-react';
 

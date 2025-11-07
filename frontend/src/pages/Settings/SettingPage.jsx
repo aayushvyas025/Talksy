@@ -1,4 +1,3 @@
-import { Send } from "lucide-react";
 import { commonConstant } from "../../helper";
 import { MainLayout } from "../../layout";
 import { useThemeStore } from "../../store";

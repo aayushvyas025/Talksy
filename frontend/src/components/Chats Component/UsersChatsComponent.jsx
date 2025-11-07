@@ -1,4 +1,3 @@
-import React from "react";
 import MessagesComponent from "../Static Components/MessagesComponent";
 
 function UsersChatsComponent({messages}) {

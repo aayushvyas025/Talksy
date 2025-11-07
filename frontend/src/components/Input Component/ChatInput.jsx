@@ -1,5 +1,3 @@
-import React from 'react'
-
 function ChatInput({type="text", inputStyling, value, onChangeHandler}) {
   return (
      <input

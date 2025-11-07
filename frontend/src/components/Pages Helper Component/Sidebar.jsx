@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import imagePlaceHolder from "/avatar.png";
 import { useAuthStore, useChatStore } from "../../store";
 import { commonConstant } from "../../helper";

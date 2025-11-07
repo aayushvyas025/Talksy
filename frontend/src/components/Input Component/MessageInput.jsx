@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import  { useRef, useState } from "react";
 import { useChatStore } from "../../store";
 import { helperFunctions } from "../../helper";
 import ImagePreviewComponent from "../Static Components/ImagePreviewComponent";

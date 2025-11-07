@@ -1,4 +1,3 @@
-import React from 'react'
 import IconComponent from '../Icon Component/IconComponent'
 
 function UserInfoComponent({userTitle , userInfo, icon, iconSize, iconStyle}) {

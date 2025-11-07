@@ -136,7 +136,6 @@ function SignupPage() {
             </div>
           </div>
         </div>
-        {/* Right Side  */}
         <AuthImagePattern
           title="Join our community"
           subtitle="Connect with your friends, Share moments, and stay in touch with your loved ones"

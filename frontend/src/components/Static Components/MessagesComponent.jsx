@@ -1,4 +1,3 @@
-import React from 'react'
 import { useAuthStore, useChatStore } from '../../store';
 import ProfilePictureComponent from './ProfilePictureComponent';
 import UserMessageComponent from './UserMessageComponent';

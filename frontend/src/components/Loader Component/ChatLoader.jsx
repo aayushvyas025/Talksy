@@ -1,4 +1,3 @@
-import React from 'react'
 import ChatHeader from '../Chats Component/ChatHeader';
 import MessageSkeleton from '../Skeleton Component/MessageSkeleton';
 import MessageInput from '../Input Component/MessageInput';

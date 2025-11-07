@@ -1,4 +1,3 @@
-import React from 'react'
 import ImageComponent from './ImageComponent'
 import TextComponent from './TextComponent'
 import { helperFunctions } from '../../helper'
