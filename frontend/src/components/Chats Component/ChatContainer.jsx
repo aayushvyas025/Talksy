@@ -7,11 +7,11 @@ import ChatLoader from "../Loader/ChatLoader";
 function ChatContainer() {
   const { messages, isMessagesLoading, getUsersMessages, selectedUser } =
     useChatStore();
-
+   
   useEffect(() => {
     getUsersMessages(selectedUser._id);
   }, [selectedUser._id, getUsersMessages]);
-
+  
   if(isMessagesLoading) {
     return <ChatLoader/>
   }

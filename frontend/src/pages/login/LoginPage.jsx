@@ -42,7 +42,7 @@ function LoginPage() {
         <div className="flex flex-col justify-center items-center p-6 sm:p-12">
           <div className="w-full max-w-md space-y-8">
             <LogoComponent />
-            <FormComponent onSubmitHandler={handleFormSubmit}>
+            <FormComponent onSubmitHandler={handleFormSubmit} formStyling={"space-y-6"}>
               <InputComponent
                 label={"Email"}
                 type={"email"}

@@ -41,8 +41,27 @@ const helperFunctions = {
     }
   },
   imageHandling: {
-    handleImageChange:(event) => {},
-    removeImageHandler:() => {}
+    handleImageChange:(event, imageCallback) => {
+      const file = event.target.files[0];
+      if(!file.type.startsWith("image/")){
+        toast.error("Please Select and Image File");
+        return; 
+      }
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        imageCallback(reader.result);
+
+      };
+
+      reader.readAsDataURL(file);
+    },
+    removeImageHandler:(imagePreviewCB, fileInput) => {
+      imagePreviewCB(null); 
+      if(fileInput.current) {
+        fileInput.current.value = ""
+      }
+    }
   }
 };
 

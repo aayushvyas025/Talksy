@@ -5,8 +5,8 @@ import { API } from "../../config";
 const { handleApi } = helperFunctions;
 const { apis } = commonConstant;
 
-const { messages } = apis;
-const { handleApiSuccess, handleApiError } = handleApi;
+const { messagesEndPoint } = apis;
+const { handleApiError } = handleApi;
 
 const useChatStore = create((set, get) => ({
   messages: [],
@@ -18,7 +18,7 @@ const useChatStore = create((set, get) => ({
   getUsersFromDB: async () => {
     set({ isUserLoading: true });
     try {
-     const response = await API.get(messages.GET_USERS);
+     const response = await API.get(messagesEndPoint.GET_USERS);
      set({users:response?.data?.filteredUsers});
     } catch (error) {
       console.error(`Error While Fetching  Users: ${error.message}`);
@@ -30,7 +30,7 @@ const useChatStore = create((set, get) => ({
   getUsersMessages: async(userId) => {
     set({isMessagesLoading : true}); 
     try {
-        const response = await API.get(messages.GET_MESSAGES(userId));  
+        const response = await API.get(messagesEndPoint.GET_MESSAGES(userId));  
         set({messages : response?.data?.messages});
     } catch (error) { 
         console.error(`Error While Fetching Messages: ${error.message}`); 
@@ -42,7 +42,7 @@ const useChatStore = create((set, get) => ({
   sendMessages:async(newMsge) => {
     const {messages, selectedUser} = get();
     try {
-      const response = await API.post(messages.CREATE_MESSAGES(selectedUser._id), newMsge);
+      const response = await API.post(messagesEndPoint.CREATE_MESSAGES(selectedUser._id), newMsge);
       set({messages:[...messages, response?.data?.newMessage]})
     } catch (error) {
       console.error(`Error While Sending Messages: ${error.message}`);

@@ -13,7 +13,7 @@ const commonConstant = Object.freeze({
          LOGIN_USER:`/auth/login`,
          UPDATE_PROFILE:`/auth/update-profile`
     },
-    messages: {
+    messagesEndPoint: {
        GET_USERS:`/message/users`,
         GET_MESSAGES:(id) => `/message/${id}`,
         CREATE_MESSAGES:(id) => `/message/sender/${id}`

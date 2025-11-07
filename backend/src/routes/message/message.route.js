@@ -11,6 +11,6 @@ const {getUserForSidebarController, getMessagesController,createMessagesControll
 
 router.get(messages.GET_USERS, protectedRoute,  getUserForSidebarController); 
 router.get(messages.GET_MESSAGES, protectedRoute, getMessagesController); 
-router.get(messages.CREATE_MESSAGES, protectedRoute,createMessagesController); 
+router.post(messages.CREATE_MESSAGES, protectedRoute,createMessagesController); 
 
 export default router; 

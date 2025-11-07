@@ -10,7 +10,7 @@ function InputComponent({
   label,
   iconSize,
   iconStyle,
-  showHidePassword
+  showHidePassword,
 }) {
   return (
     <div className="form-control">
@@ -18,7 +18,11 @@ function InputComponent({
         <span className="label-text font-medium">{label}</span>
       </label>
       <div className="relative">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <div
+          className={
+            "absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+          }
+        >
           {icon && (
             <IconComponent
               icon={icon}
