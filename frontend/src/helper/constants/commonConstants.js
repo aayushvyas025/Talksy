@@ -7,16 +7,16 @@ const commonConstant = Object.freeze({
   },
   apis: {
     auth: {
-         USER_AUTHENTICATED:`/auth/check-auth`,
-         SIGNUP_USER:`/auth/signup`,
-         LOGOUT_USER:`/auth/logout`,
-         LOGIN_USER:`/auth/login`,
+         USER_AUTHENTICATED:`/api/v1/auth/check-auth`,
+         SIGNUP_USER:`/api/v1/auth/signup`,
+         LOGOUT_USER:`/api/v1/auth/logout`,
+         LOGIN_USER:`/api/v1/auth/login`,
          UPDATE_PROFILE:`/auth/update-profile`
     },
     messagesEndPoint: {
-       GET_USERS:`/message/users`,
-        GET_MESSAGES:(id) => `/message/${id}`,
-        CREATE_MESSAGES:(id) => `/message/sender/${id}`
+       GET_USERS:`/api/v1/message/users`,
+        GET_MESSAGES:(id) => `/api/v1/message/${id}`,
+        CREATE_MESSAGES:(id) => `/api/v1/message/sender/${id}`
     }
 
   },

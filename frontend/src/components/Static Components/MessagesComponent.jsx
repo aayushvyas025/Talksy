@@ -4,10 +4,10 @@ import ProfilePictureComponent from './ProfilePictureComponent';
 import UserMessageComponent from './UserMessageComponent';
 
 function MessagesComponent({message}) {
-    const {receiverId, senderId, text, image} = message; 
+    const { senderId,  image} = message; 
    const {authUser} = useAuthStore();
   const {selectedUser} = useChatStore()
-   console.log(message)
+  
 
   return (
     <div className={`chat ${senderId === authUser._id ? "chat-end" : "chat-start"}`}>

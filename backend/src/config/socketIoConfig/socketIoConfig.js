@@ -11,15 +11,14 @@ const server = http.createServer(app);
 
 const socketIo = new Server(server, {
     cors:{
-        origin:frontendUrl,
-        credentials:true
+        origin:frontendUrl
     }
 }); 
 
 socketIo.on("connection", (socket) => {
   console.log(`User connected`, socket.id) ;
-  socket.on("disconnected", () => {
-    console.log(`A user disconnected`,socket.io)
+  socket.on("disconnect", () => {
+    console.log(`A user disconnected`,socket.id)
   })
 
 })
