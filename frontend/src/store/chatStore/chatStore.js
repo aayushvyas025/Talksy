@@ -19,7 +19,6 @@ const useChatStore = create((set) => ({
     set({ isUserLoading: true });
     try {
      const response = await API.get(messages.GET_USERS);
-     console.log(response?.data?.filteredUsers)
      set({users:response?.data?.filteredUsers});
     } catch (error) {
       console.error(`Error While Fetching  Users: ${error.message}`);
@@ -31,8 +30,7 @@ const useChatStore = create((set) => ({
   getUsersMessages: async(userId) => {
     set({isMessagesLoading : true}); 
     try {
-        const response = await API.get(messages.GET_MESSAGES(userId)); 
-        console.log(response);  
+        const response = await API.get(messages.GET_MESSAGES(userId));  
         set({messages : response?.data?.messages});
     } catch (error) { 
         console.error(`Error While Fetching Messages: ${error.message}`); 
