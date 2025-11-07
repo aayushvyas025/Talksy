@@ -5,9 +5,9 @@ const {appConfig} =  commonConstants;
 const {port} = appConfig; 
 
 
-function databaseConnection(app) {
+function databaseConnection(server) {
     connectToDB().then(() => {
-        app.listen(port, () => {
+        server.listen(port, () => {
             console.log(`Your Server up and running on http://localhost:${port}`); 
         })
     }).catch((error) => {

@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Pages from "../../pages";
 import { useAuthStore } from "../../store";
-import { useEffect,Suspense } from "react";
+import { useEffect} from "react";
 import { LoaderComponent } from "../../components";
 
 const {
@@ -26,7 +26,7 @@ function MainRoutes() {
   return (
     
 
-    <Routes fallback={<p>Loading...</p>}>
+    <Routes>
       <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
       <Route path="/signup" element={!authUser ? <SignupPage /> : <Navigate to="/" />} />
       <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to='/'/>} />
