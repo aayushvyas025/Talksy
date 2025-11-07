@@ -1,6 +1,5 @@
 import {
   AvatarImageComponent,
-  LoaderComponent,
   UserInfoComponent,
 } from "../../components";
 import { MainLayout } from "../../layout";
@@ -24,7 +23,6 @@ function ProfilePage() {
     };
   }
 
-  console.log(authUser);
 
   return (
     <MainLayout>

@@ -8,7 +8,7 @@ const { apis } = commonConstant;
 const { messages } = apis;
 const { handleApiSuccess, handleApiError } = handleApi;
 
-const useChatStore = create((set) => ({
+const useChatStore = create((set, get) => ({
   messages: [],
   users: [],  
   selectedUsers: null,
@@ -39,6 +39,16 @@ const useChatStore = create((set) => ({
        set({ isMessagesLoading: false });
     }
   },
+  sendMessages:async(newMsge) => {
+    const {messages, selectedUser} = get();
+    try {
+      const response = await API.post(messages.CREATE_MESSAGES(selectedUser._id), newMsge);
+      set({messages:[...messages, response?.data?.newMessage]})
+    } catch (error) {
+      console.error(`Error While Sending Messages: ${error.message}`);
+      handleApiError(error?.response?.data?.message);
+    }
+  }
 }));
 
 export default useChatStore;

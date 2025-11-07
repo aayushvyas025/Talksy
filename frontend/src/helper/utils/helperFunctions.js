@@ -39,6 +39,10 @@ const helperFunctions = {
     handleApiError:(error) => {
       toast.error(error)
     }
+  },
+  imageHandling: {
+    handleImageChange:(event) => {},
+    removeImageHandler:() => {}
   }
 };
 
