@@ -1,5 +1,5 @@
 import { MessageSquare } from "lucide-react";
-import IconComponent from "../Icon/IconComponent";
+import IconComponent from "../Icon Component/IconComponent";
 
 function LogoComponent() {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import IconComponent from "../Icon/IconComponent";
+import IconComponent from "../Icon Component/IconComponent";
 import { Camera } from "lucide-react";
 
 function AvatarImageComponent({

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import IconComponent from '../Icon/IconComponent'
+import IconComponent from '../Icon Component/IconComponent'
 import { MessageSquare } from 'lucide-react'
 
 function HeaderLogo({title}) {

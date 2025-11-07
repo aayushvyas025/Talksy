@@ -1,4 +1,4 @@
-import IconComponent from "../Icon/IconComponent";
+import IconComponent from "../Icon Component/IconComponent";
 
 function InputComponent({
   type,

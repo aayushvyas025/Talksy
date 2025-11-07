@@ -2,10 +2,10 @@ import React, { useRef, useState } from "react";
 import { useChatStore } from "../../store";
 import { helperFunctions } from "../../helper";
 import ImagePreviewComponent from "../Static Components/ImagePreviewComponent";
-import FormComponent from "../Form/FormComponent";
+import FormComponent from "../Pages Helper Component/FormComponent";
 import ChatInput from "./ChatInput";
 import ImageInput from "./ImageInput";
-import Button from "../Button/Button";
+import Button from "../Pages Helper Component/Button";
 import { Image, Send } from "lucide-react";
 
 function MessageInput() {

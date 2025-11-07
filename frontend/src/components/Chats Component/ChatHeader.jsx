@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuthStore, useChatStore } from '../../store'
 import imagePlaceHolder from "../../../public/avatar.png"
-import Button from '../Button/Button';
+import Button from '../Pages Helper Component/Button';
 import { X } from 'lucide-react';
 
 function ChatHeader() {

@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../Button/Button";
+import Button from "../Pages Helper Component/Button";
 import { X } from 'lucide-react';
 
 function ImagePreviewComponent({ imagePreview, removeImageHandler }) {

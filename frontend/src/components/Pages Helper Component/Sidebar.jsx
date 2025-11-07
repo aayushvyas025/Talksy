@@ -3,9 +3,9 @@ import imagePlaceHolder from "../../../public/avatar.png";
 import { useAuthStore, useChatStore } from "../../store";
 import { commonConstant } from "../../helper";
 import SidebarSkeleton from "../Skeleton Component/SidebarSkeleton";
-import IconComponent from "../Icon/IconComponent";
+import IconComponent from "../Icon Component/IconComponent";
 import { Users } from "lucide-react";
-import Button from "../Button/Button";
+import Button from "../Pages Helper Component/Button";
 
 function Sidebar() {
   const {

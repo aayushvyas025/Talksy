@@ -1,9 +1,9 @@
 import { LogOut, Settings, User } from "lucide-react";
 import { useAuthStore } from "../../store";
-import HeaderLogo from "../Logo/HeaderLogo";
-import LinkComponent from "../Link/LinkComponent";
-import Button from "../Button/Button";
-import IconComponent from "../Icon/IconComponent";
+import HeaderLogo from "../Logo Component/HeaderLogo";
+import LinkComponent from "./LinkComponent";
+import Button from "./Button";
+import IconComponent from "../Icon Component/IconComponent";
 
 function Navbar() {
   const { logoutUser, authUser } = useAuthStore();
