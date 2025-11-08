@@ -1,5 +1,8 @@
-import { cloudinary } from "../../config/index.js";
+import { cloudinary, socketIoServer } from "../../config/index.js";
+import { getReceiverSocketId } from "../../helper/index.js";
 import { Message, User } from "../../model/index.js";
+
+const {usersOnline, socketIo} = socketIoServer;
 
 const messagesController = {
   getUserForSidebarController: async (request, response) => {
@@ -67,7 +70,11 @@ const messagesController = {
 
       await newMessage.save();
 
-      // Adding in Frontend Realtime Functionality with Socket.io
+      const socketReceiverId = getReceiverSocketId(receiverId,usersOnline);
+
+      if(socketReceiverId) {
+        socketIo.to(socketReceiverId).emit("newMessage",newMessage) 
+      }
 
       response
         .status(201)

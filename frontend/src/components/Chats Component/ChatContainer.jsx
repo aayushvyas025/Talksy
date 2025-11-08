@@ -6,22 +6,38 @@ import ChatLoader from "../Loader Component/ChatLoader";
 import UsersChatsComponent from "./UsersChatsComponent";
 
 function ChatContainer() {
-  const { messages, isMessagesLoading, getUsersMessages, selectedUser } =
-    useChatStore();
-   
+  const {
+    messages,
+    isMessagesLoading,
+    getUsersMessages,
+    selectedUser,
+    subscribeToMessages,
+     unsubscribeFromMessages,
+  } = useChatStore();
+
   useEffect(() => {
     getUsersMessages(selectedUser._id);
-  }, [selectedUser._id, getUsersMessages]);
+    subscribeToMessages();
 
-  if(isMessagesLoading) {
-    return <ChatLoader/>
+    return () =>  unsubscribeFromMessages();
+  }, [
+    selectedUser._id,
+    getUsersMessages,
+    subscribeToMessages,
+     unsubscribeFromMessages,
+  ]);
+
+  if (isMessagesLoading) {
+    return <ChatLoader />;
   }
 
-  return <div className="flex-1 flex flex-col overflow-col">
-    <ChatHeader />
-    <UsersChatsComponent  messages={messages}/>
-    <MessageInput />
-  </div>;
+  return (
+    <div className="flex-1 flex flex-col overflow-col">
+      <ChatHeader />
+      <UsersChatsComponent messages={messages} />
+      <MessageInput />
+    </div>
+  );
 }
 
 export default ChatContainer;

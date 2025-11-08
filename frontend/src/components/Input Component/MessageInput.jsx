@@ -51,6 +51,7 @@ function MessageInput() {
             inputStyling={
               "w-full input input-bordered rounded-lg input-sm sm:input-md"
             }
+            placeholder={"Enter Your Messages..."}
             value={text}
             onChangeHandler={(event) => setText(event.target.value)}
           />

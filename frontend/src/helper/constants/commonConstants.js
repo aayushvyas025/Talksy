@@ -1,3 +1,5 @@
+const baseUrl = `/api/v1`;
+
 const commonConstant = Object.freeze({
   envVariables: {
     backendUrl:
@@ -7,16 +9,16 @@ const commonConstant = Object.freeze({
   },
   apis: {
     auth: {
-         USER_AUTHENTICATED:`/api/v1/auth/check-auth`,
-         SIGNUP_USER:`/api/v1/auth/signup`,
-         LOGOUT_USER:`/api/v1/auth/logout`,
-         LOGIN_USER:`/api/v1/auth/login`,
-         UPDATE_PROFILE:`/auth/update-profile`
+         USER_AUTHENTICATED:`${baseUrl}/auth/check-auth`,
+         SIGNUP_USER:`${baseUrl}/auth/signup`,
+         LOGOUT_USER:`${baseUrl}/auth/logout`,
+         LOGIN_USER:`${baseUrl}/auth/login`,
+         UPDATE_PROFILE:`${baseUrl}/auth/update-profile`
     },
     messagesEndPoint: {
-       GET_USERS:`/api/v1/message/users`,
-        GET_MESSAGES:(id) => `/api/v1/message/${id}`,
-        CREATE_MESSAGES:(id) => `/api/v1/message/sender/${id}`
+       GET_USERS:`${baseUrl}/message/users`,
+        GET_MESSAGES:(id) => `${baseUrl}/message/${id}`,
+        CREATE_MESSAGES:(id) => `${baseUrl}/message/sender/${id}`
     }
 
   },

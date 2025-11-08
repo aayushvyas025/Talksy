@@ -1,4 +1,4 @@
-import  { useEffect } from "react";
+import { useEffect, useState } from "react";
 import imagePlaceHolder from "/avatar.png";
 import { useAuthStore, useChatStore } from "../../store";
 import { commonConstant } from "../../helper";
@@ -6,8 +6,10 @@ import SidebarSkeleton from "../Skeleton Component/SidebarSkeleton";
 import IconComponent from "../Icon Component/IconComponent";
 import { Users } from "lucide-react";
 import Button from "../Pages Helper Component/Button";
+import OnlineUserShow from "../Static Components/OnlineUserShow";
 
 function Sidebar() {
+  const [showOnlineOnly, setShowOnlineOnly] = useState(false);
   const {
     getUsersFromDB,
     setSelectedUser,
@@ -16,7 +18,7 @@ function Sidebar() {
     isUserLoading,
   } = useChatStore();
 
- const {onlineUsers} = useAuthStore();
+  const { onlineUsers } = useAuthStore();
 
   useEffect(() => {
     getUsersFromDB();
@@ -33,7 +35,12 @@ function Sidebar() {
           <IconComponent icon={Users} iconSize={6} />
           <span className="font-medium hidden lg:block">Contacts</span>
         </div>
-        {/* Todo : Online users filter */}
+        <OnlineUserShow
+          onlineUsers={onlineUsers}
+          showOnline={showOnlineOnly}
+          onChangeHandler={(event) => setShowOnlineOnly(event.target.checked)}
+          text={"Show online only"}
+        />
       </div>
       <div className="overflow-y-auto w-full py-3 ">
         {users.map((user) => (
@@ -53,13 +60,13 @@ function Sidebar() {
                 className="size-12 object-cover rounded-full"
               />
               {onlineUsers.includes(user._id) && (
-                <span className="absolute bottom-0 right-0 size-3 bg-green-500 rounded-full ring-2 ring-zinc-900"/>
+                <span className="absolute bottom-0 right-0 size-3 bg-green-500 rounded-full ring-2 ring-zinc-900" />
               )}
             </div>
             <div className="hidden lg:block text-left min-w-0">
               <div className="font-medium truncate">{user.fullName}</div>
               <div className="text-sm text-zinc-400">
-                {onlineUsers.includes(user._id) ? "Online": "Offline" }
+                {onlineUsers.includes(user._id) ? "Online" : "Offline"}
               </div>
             </div>
           </Button>

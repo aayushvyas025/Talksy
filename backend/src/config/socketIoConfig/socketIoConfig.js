@@ -15,12 +15,20 @@ const socketIo = new Server(server, {
     }
 }); 
 
+const usersOnline = {}; //* Maping the online users by there id
+
 socketIo.on("connection", (socket) => {
   console.log(`User connected`, socket.id) ;
+  const userId = socket.handshake.query.userId;
+  if(userId) usersOnline[userId] = socket.id;
+  socketIo.emit("getOnlineUsers",Object.keys(usersOnline)); 
+
   socket.on("disconnect", () => {
-    console.log(`A user disconnected`,socket.id)
+    console.log(`A user disconnected`,socket.id);
+    delete usersOnline[userId];
+    socketIo.emit("getOnlineUsers",Object.keys(usersOnline));
   })
 
 })
 
-export default {app, server, socketIo}
+export default {app, server, socketIo, usersOnline}
