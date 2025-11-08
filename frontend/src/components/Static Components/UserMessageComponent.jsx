@@ -1,24 +1,32 @@
-import ImageComponent from './ImageComponent'
-import TextComponent from './TextComponent'
-import { helperFunctions } from '../../helper'
+import ImageComponent from "./ImageComponent";
+import TextComponent from "./TextComponent";
+import { helperFunctions } from "../../helper";
+import { useEffect, useRef } from "react";
+import { useChatStore } from "../../store";
 
+function UserMessageComponent({ message }) {
+  const messageEndRef = useRef(null);
+  const { formatMessageTime } = helperFunctions;
+  const { messages } = useChatStore();
 
-
-function UserMessageComponent({message}) {
-    const {formatMessageTime} = helperFunctions;
+  useEffect(() => {
+    if (messageEndRef && messages) {
+      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
   return (
     <>
-    <div className='chat-header mb-1'>
-        <time className='text-xs opacity-50 ml-1'>
-            {formatMessageTime(message.createdAt)}
+      <div className="chat-header mb-1" ref={messageEndRef}>
+        <time className="text-xs opacity-50 ml-1">
+          {formatMessageTime(message.createdAt)}
         </time>
-    </div>
-    <div className="chat-bubble flex flex-col">
+      </div>
+      <div className="chat-bubble flex flex-col">
         {message.image && <ImageComponent image={message.image} />}
         {message.text && <TextComponent text={message.text} />}
-    </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default UserMessageComponent
+export default UserMessageComponent;
