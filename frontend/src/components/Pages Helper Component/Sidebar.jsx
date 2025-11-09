@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import imagePlaceHolder from "/avatar.png";
 import { useAuthStore, useChatStore } from "../../store";
-import { commonConstant } from "../../helper";
 import SidebarSkeleton from "../Skeleton Component/SidebarSkeleton";
 import IconComponent from "../Icon Component/IconComponent";
 import { Users } from "lucide-react";
@@ -19,6 +18,9 @@ function Sidebar() {
   } = useChatStore();
 
   const { onlineUsers } = useAuthStore();
+  const filteredUser = showOnlineOnly
+    ? users.filter((user) => onlineUsers.includes(user._id))
+    : users;
 
   useEffect(() => {
     getUsersFromDB();
@@ -43,7 +45,7 @@ function Sidebar() {
         />
       </div>
       <div className="overflow-y-auto w-full py-3 ">
-        {users.map((user) => (
+        {filteredUser.map((user) => (
           <Button
             key={user._id}
             onClickHandler={() => setSelectedUser(user)}
@@ -71,6 +73,9 @@ function Sidebar() {
             </div>
           </Button>
         ))}
+        {filteredUser.length === 0 && (
+          <div className="text-center text-zinc-500 py-4">No Online Users</div>
+        )}
       </div>
     </aside>
   );
