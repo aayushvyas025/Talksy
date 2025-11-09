@@ -14,7 +14,7 @@ async function generateToken(userId, response) {
         maxAge:1*24*60*60*1000,
         httpOnly:true, // prevent XSS attacks cross-site scripting attacks 
         sameSite: nodeEnviornment === "development" ? "lax" : "none", // prevent CSRF attacks cross-site request forgery attacks 
-        secure:nodeEnviornment !== "development"
+        secure:nodeEnviornment == "production"
     } ); 
    
    return token; 

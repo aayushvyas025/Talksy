@@ -11,7 +11,8 @@ const server = http.createServer(app);
 
 const socketIo = new Server(server, {
     cors:{
-        origin:frontendUrl
+        origin:frontendUrl,
+        credentials: true
     }
 }); 
 
