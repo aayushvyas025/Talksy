@@ -10,7 +10,7 @@ function servingStaticFrontend(app) {
     if(nodeEnviornment === "production") {
      app.use(express.static(path.join(__dirname, "../frontend/dist"))); 
 
-     app.use((_, response) => {
+     app.get("*",(_, response) => {
         response.sendFile(path.join(__dirname, "../frontend/dist", "index.html"))
      })
     }
