@@ -13,7 +13,7 @@ async function generateToken(userId, response) {
     response.cookie("jwt_token",token, {
         maxAge:1*24*60*60*1000,
         httpOnly:true, // prevent XSS attacks cross-site scripting attacks 
-        sameSite:true, // prevent CSRF attacks cross-site request forgery attacks 
+        sameSite: nodeEnviornment === "development" ? "lax" : "none", // prevent CSRF attacks cross-site request forgery attacks 
         secure:nodeEnviornment !== "development"
     } ); 
    
