@@ -27,11 +27,11 @@ function MainRoutes() {
     
 
     <Routes>
-      <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
-      <Route path="/signup" element={!authUser ? <SignupPage /> : <Navigate to="/" />} />
-      <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to='/'/>} />
+      <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" replace />} />
+      <Route path="/signup" element={!authUser ? <SignupPage /> : <Navigate to="/" replace />} />
+      <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to='/' replace/>} />
       <Route path="/settings" element={<SettingPage />  } />
-      <Route path="/profile" element={authUser ?  <ProfilePage /> : <Navigate to="/login" />} />
+      <Route path="/profile" element={authUser ?  <ProfilePage /> : <Navigate to="/login" replace />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
