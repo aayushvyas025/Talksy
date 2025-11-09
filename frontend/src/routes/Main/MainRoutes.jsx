@@ -19,7 +19,7 @@ function MainRoutes() {
     checkAuth(); 
   }, []); 
 
-  if(isCheckingAuth && !authUser) {
+  if(isCheckingAuth) {
     return <LoaderComponent sizeOf={10} />
   }
 
