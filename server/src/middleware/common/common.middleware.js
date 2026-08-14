@@ -6,11 +6,11 @@ const {nodeEnvironment} = envVariables;
 
 function setupCommonMiddleware(app) {
   app.use(express.json()); 
-  if(nodeEnvironment !== "production") {
-      app.use(cors({
-        origin:""
-      }));
-  }
+//   if(nodeEnvironment !== "production") {
+//       app.use(cors({
+//         origin:""
+//       }));
+//   }
 
 } 
 
