@@ -7,11 +7,8 @@ const apiRoutes = Object.freeze({
   },
   user: {
     userBaseUrl: "/talksy/api/v1/user",
-    get_users: "/fetch",
-    get_user_id: "/fetch:id",
-    create_users: "/create",
-    update_user: "/update:id",
-    delete_user: "/delete:id",
+    fetch_users: "/fetch",
+    update_profile:"/profile/update",
   },
   messages:{
     messageBaseUrl:'/talksy/api/v1/message'
