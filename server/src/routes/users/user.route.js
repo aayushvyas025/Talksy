@@ -1,5 +1,11 @@
-import express from "express" 
+import apiRoutes from "#constant/apiRoutes.constant";
+import { updateProfile } from "#controller/user/user.controller";
+import { protectRoute } from "#middleware/auth/auth.middleware";
+import express from "express";
 
-const router = express.Router(); 
+const { update_profile } = apiRoutes.user;
+const router = express.Router();
 
-export default router
+router.put(update_profile, protectRoute, updateProfile);
+
+export default router;
