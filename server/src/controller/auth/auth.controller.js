@@ -1,5 +1,6 @@
 import User from "#model/user/user.model";
 import { hashingPassword } from "#utils/auth/auth.util";
+import { generateToken } from "#utils/auth/tokens.utils";
 import { userInfoValidation } from "#validation/auth/user.validation";
 
 export const signupUser = async (request, response, next) => {
@@ -34,6 +35,10 @@ export const signupUser = async (request, response, next) => {
         .status(400)
         .json({ success: false, message: `Error, invalid user data` });
     }
+    generateToken(newUser._id, response, 7);
+    await newUser.save(); 
+
+    return response.status(201).json({success:true, message:`User signed up successfully`})
   } catch (error) {
     console.error(`Error, while signup the user: ${error.message}`);
     next(error);
