@@ -33,11 +33,6 @@ export const signupUser = async (request, response, next) => {
       password: hashedPassword,
     });
 
-    if (!newUser) {
-      return response
-        .status(400)
-        .json({ success: false, message: `Error, invalid user data` });
-    }
     await newUser.save();
     generateToken({ userId: newUser._id, response, expires: 7 });
 
