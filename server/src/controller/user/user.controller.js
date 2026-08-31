@@ -13,7 +13,7 @@ export const updateProfile = async (request, response, next) => {
       .json({ success: false, message: "Error, profile picture required" });
   }
   try {
-    const uploadResponse = await uploadImage(profilePicture);
+    // const uploadResponse = await uploadImage(profilePicture);
     const user = await User.findByIdAndUpdate(
       userId,
       { profilePicture: uploadResponse.secure_url },
@@ -28,7 +28,7 @@ export const updateProfile = async (request, response, next) => {
         profilePic: user.profilePicture,
       });
   } catch (error) {
-    console.error(`Error, while fetching user profile: ${error.message}`);
+    console.error(`Error, while update user profile: ${error.message}`);
     next(error);
   }
 };
