@@ -40,7 +40,6 @@ export const signupUser = async (request, response, next) => {
       success: true,
       message: `User signed up successfully`,
       newUser: {
-        _id: newUser._id,
         fullName: newUser.fullName,
         email: newUser.email,
         profilePic: newUser.profilePic,

@@ -3,14 +3,12 @@ import authRoutes from "#routes/auth/auth.route";
 import messageRoutes from "#routes/chat/chat.route";
 import userRoutes from "#routes/users/user.route";
 
-const { authBaseUrl } = apiRoutes.auth;
-const { messageBaseUrl } = apiRoutes.messages;
-const { userBaseUrl } = apiRoutes.user;
+const { baseUrl } = apiRoutes;
 
 function setupRoutesMiddleware(app) {
-  app.use(authBaseUrl, authRoutes);
-  app.use(messageBaseUrl, messageRoutes);
-  app.use(userBaseUrl, userRoutes);
+  app.use(baseUrl, authRoutes);
+  app.use(baseUrl, messageRoutes);
+  app.use(baseUrl, userRoutes);
 }
 
 export default setupRoutesMiddleware;

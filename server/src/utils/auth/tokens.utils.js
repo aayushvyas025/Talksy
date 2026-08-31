@@ -19,8 +19,7 @@ export function resetCookie({ response }) {
   response.cookie("jwt", "", { maxAge: 0 });
 }
 
-export function verifyToken({ response }) {
-  const token = response.cookie.token;
+export function verifyToken({ token }) {
   if (!token) {
     return {
       isValid: false,
@@ -38,7 +37,7 @@ export function verifyToken({ response }) {
   }
 
   return {
-    token,
+    verifiedToken:token,
     decoded,
     isValid: true,
     message: "Token is verified successfully",

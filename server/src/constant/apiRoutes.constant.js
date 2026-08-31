@@ -1,17 +1,15 @@
 const apiRoutes = Object.freeze({
+  baseUrl: "/talksy/api/v1",
   auth: {
-    authBaseUrl: "/talksy/api/v1/auth",
-    signup: "/signup",
-    login: "/login",
-    logout: "/logout",
+    signup: "/auth/signup",
+    login: "/auth/login",
+    logout: "/auth/logout",
   },
   user: {
-    userBaseUrl: "/talksy/api/v1/user",
-    fetch_users: "/fetch",
-    update_profile:"/profile/update",
+    fetch_users: "/user/fetch",
+    update_profile:"/user/profile/update",
   },
   messages:{
-    messageBaseUrl:'/talksy/api/v1/message'
   }
 });
 

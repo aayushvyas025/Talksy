@@ -38,6 +38,7 @@
     "#middleware/*": "./src/middleware/*.js",
     "#routes/*": "./src/routes/*.js",
     "#utils/*": "./src/utils/*.js",
-    "#validation/*":"./src/validation/*.js"
+    "#validation/*": "./src/validation/*.js",
+    "#helper/*": "./src/helper/*.js"
   }
 }

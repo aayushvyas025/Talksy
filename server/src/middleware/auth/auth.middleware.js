@@ -1,11 +1,12 @@
 import User from "#model/user/user.model";
 import { verifyToken } from "#utils/auth/tokens.utils";
 
-export const protectRoute = async (request, response, next) => {
+export const protectRoute = async (request, response, next) => {  
+  const token = request.cookies?.jwt;
   try {
-    const { isValid, message, token, decoded } = verifyToken({ response });
-
-    if (!token) {
+    const { isValid, message, verifiedToken, decoded } = verifyToken({ token });
+ 
+    if (!verifiedToken) {
       return response.status(401).json({ success: isValid, message });
     }
 
@@ -25,6 +26,6 @@ export const protectRoute = async (request, response, next) => {
     next();
   } catch (error) {
     console.error(`Error, while protecting route: ${error.message}`);
-    next(error); 
+    next(error);
   }
 };
