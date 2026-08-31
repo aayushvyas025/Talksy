@@ -4,7 +4,7 @@ import { generateToken, resetCookie } from "#utils/auth/tokens.utils";
 import {
   userInfoValidation,
   validateLoginUser,
-} from "#validation/auth/user.validation";
+} from "#validation/auth/auth.validation";
 
 export const signupUser = async (request, response, next) => {
   const { fullName, email, password } = request.body;
