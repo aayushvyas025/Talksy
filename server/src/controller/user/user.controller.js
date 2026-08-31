@@ -1,8 +1,10 @@
-import { validateUserInput } from "#validation/user/user.vallidation";
+import configCloudinary from "#config/cloudinary/cloudinary.config";
+import { validateUserInput } from "#validation/user/user.validation";
 
 export const updateProfile = async (request, response, next) => {
-  const { profilePic } = request.body;
-  const { isValid } = validateUserInput(profilePic);
+  const { profilePicture } = request.body;
+  const { _id: userId } = request.user;
+  const { isValid } = validateUserInput(profilePicture);
 
   if (!isValid) {
     return response
@@ -10,6 +12,8 @@ export const updateProfile = async (request, response, next) => {
       .json({ success: false, message: "Error, profile picture required" });
   }
   try {
+    const { cloudinary } = configCloudinary();
+    const uploadResponse = await cloudinary.uploader.upload(profilePicture);
   } catch (error) {
     console.error(`Error, while fetching user profile: ${error.message}`);
     next(error);
