@@ -7,6 +7,7 @@ const apiRoutes = Object.freeze({
   },
   user: {
     fetch_users: "/user/fetch",
+    fetch_user_id:"/user/fetch/:id",
     update_profile:"/user/profile/update",
     user_authenticated:"/user/authenticated"
   },

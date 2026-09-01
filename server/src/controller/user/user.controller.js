@@ -2,6 +2,24 @@ import cloudinary from "#config/cloudinary/cloudinary.config";
 import User from "#model/user/user.model";
 import { validateUserInput } from "#validation/user/user.validation";
 
+
+export const fetchUsers = async(request, response, next) => {
+  try {
+    
+  } catch (error) {
+    console.error(`Error, while fetching users: ${error.message}`); 
+    next(error); 
+  }
+} 
+
+export const fetchUser = async(request, response, next) => {
+  try {
+    
+  } catch (error) {
+    next(error); 
+  }
+}
+
 export const updateProfile = async (request, response, next) => {
   const { profilePicture } = request.body;
   const { _id: userId } = request.user;
