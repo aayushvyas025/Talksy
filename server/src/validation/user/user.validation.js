@@ -1,5 +1,5 @@
 export function validateUserInput(input) {
-  if (!input.trim() || typeof input !== "string") {
+  if ( typeof input !== "string" || !input.trim() ) {
     return { isValid: false };
   }
 

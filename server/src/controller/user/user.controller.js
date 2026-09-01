@@ -1,4 +1,4 @@
-import { uploadImage } from "#helper/images/image.helper";
+import cloudinary from "#config/cloudinary/cloudinary.config";
 import User from "#model/user/user.model";
 import { validateUserInput } from "#validation/user/user.validation";
 
@@ -12,21 +12,20 @@ export const updateProfile = async (request, response, next) => {
       .status(400)
       .json({ success: false, message: "Error, profile picture required" });
   }
+
   try {
-    // const uploadResponse = await uploadImage(profilePicture);
+    const uploadResponse = await cloudinary.uploader.upload(profilePicture);
     const user = await User.findByIdAndUpdate(
       userId,
       { profilePicture: uploadResponse.secure_url },
       { new: true, runValidators: true },
     );
 
-    return response
-      .status(200)
-      .json({
-        success: true,
-        message: `Successfully, update user profile`,
-        profilePic: user.profilePicture,
-      });
+    return response.status(200).json({
+      success: true,
+      message: `Successfully, update user profile`,
+      profilePic: user.profilePicture,
+    });
   } catch (error) {
     console.error(`Error, while update user profile: ${error.message}`);
     next(error);

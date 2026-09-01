@@ -4,6 +4,7 @@ import envVariables from "#constant/envs.constant";
 const { cloudinaryApiKey, cloudinaryApiSecret, cloudinaryCloudName } =
   envVariables;
 
+
 cloudinary.config({
   cloud_name: cloudinaryCloudName,
   api_key: cloudinaryApiKey,

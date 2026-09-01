@@ -42,7 +42,7 @@ export const signupUser = async (request, response, next) => {
       newUser: {
         fullName: newUser.fullName,
         email: newUser.email,
-        profilePic: newUser.profilePic,
+        profilePicture: newUser.profilePicture,
       },
     });
   } catch (error) {
@@ -88,7 +88,7 @@ export const loginUser = async (request, response, next) => {
         _id: user._id,
         fullName: user.fullName,
         email: user.email,
-        profilePic: user.profilePic,
+        profilePicture: user.profilePicture,
       },
     });
   } catch (error) {
