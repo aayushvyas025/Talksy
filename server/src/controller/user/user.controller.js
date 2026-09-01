@@ -31,3 +31,20 @@ export const updateProfile = async (request, response, next) => {
     next(error);
   }
 };
+
+export const userAuthenticated = async (request, response, next) => {
+  try {
+    return response
+      .status(200)
+      .json({
+        success: true,
+        message: "User is authenticated",
+        user: request.user,
+      });
+  } catch (error) {
+    console.error(
+      `Error, while checking user is authenticated: ${error.message}`,
+    );
+    next(error);
+  }
+};
