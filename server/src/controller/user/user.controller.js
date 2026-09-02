@@ -6,8 +6,11 @@ import {
 } from "#validation/user/user.validation";
 
 export const fetchUsers = async (request, response, next) => {
+  const currentUserId = request.user._id;
   try {
-    const users = await User.find().sort({ createdAt: -1 }).select("-password");
+    const users = await User.find({ _id: { $ne: currentUserId } })
+      .sort({ createdAt: -1 })
+      .select("-password");
     return response.status(200).json({
       success: true,
       message: users.length > 0 ? "Fetch users successfully" : "No users found",
@@ -20,8 +23,8 @@ export const fetchUsers = async (request, response, next) => {
 };
 
 export const fetchUserById = async (request, response, next) => {
-  const { id } = request.params;
-  const { isValidId } = validateUserId(id);
+  const { _id: userId } = request.user;
+  const { isValidId } = validateUserId(userId);
   if (!isValidId) {
     return response
       .status(400)
@@ -29,12 +32,12 @@ export const fetchUserById = async (request, response, next) => {
   }
 
   try {
-    const user = await User.findById(id).select("-password");
+    const user = await User.findById(userId).select("-password");
 
     if (!user) {
       return response
         .status(404)
-        .json({ success: false, message: "User not found" });
+        .json({ success: false, message: "Error, user not found" });
     }
 
     return response
@@ -50,11 +53,15 @@ export const updateProfile = async (request, response, next) => {
   const { profilePicture } = request.body;
   const { _id: userId } = request.user;
   const { isValid } = validateUserInput(profilePicture);
+  const { isValidId } = validateUserId(userId);
 
-  if (!isValid) {
-    return response
-      .status(400)
-      .json({ success: false, message: "Error, profile picture required" });
+  if (!isValid || !isValidId) {
+    return response.status(400).json({
+      success: false,
+      message: isValidId
+        ? "Error, invalid userId"
+        : "Error, profile picture required",
+    });
   }
 
   try {
@@ -72,6 +79,33 @@ export const updateProfile = async (request, response, next) => {
     });
   } catch (error) {
     console.error(`Error, while update user profile: ${error.message}`);
+    next(error);
+  }
+};
+
+export const userAccountDelete = async (request, response, next) => {
+  const { _id: userId } = request.user;
+  const { isValidId } = validateUserId(userId);
+
+  if (!isValidId) {
+    return response
+      .status(400)
+      .json({ success: false, message: "Error, invalid userId" });
+  }
+
+  try {
+    const user = await User.findByIdAndDelete(userId);
+    if (!user) {
+      return response
+        .status(404)
+        .json({ success: false, message: "Error, user not found" });
+    }
+
+    return response
+      .status(200)
+      .json({ success: true, message: "User deleted successfully" });
+  } catch (error) {
+    console.error(`Error while deleting user account: ${error.message}`);
     next(error);
   }
 };
