@@ -19,7 +19,7 @@ export const fetchUsers = async (request, response, next) => {
   }
 };
 
-export const fetchUser = async (request, response, next) => {
+export const fetchUserById = async (request, response, next) => {
   const { id } = request.params;
   const { isValidId } = validateUserId(id);
   if (!isValidId) {
