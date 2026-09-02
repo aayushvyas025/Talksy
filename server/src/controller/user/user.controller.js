@@ -1,24 +1,50 @@
 import cloudinary from "#config/cloudinary/cloudinary.config";
 import User from "#model/user/user.model";
-import { validateUserInput } from "#validation/user/user.validation";
+import {
+  validateUserId,
+  validateUserInput,
+} from "#validation/user/user.validation";
 
-
-export const fetchUsers = async(request, response, next) => {
+export const fetchUsers = async (request, response, next) => {
   try {
-    
+    const users = await User.find().sort({ createdAt: -1 }).select("-password");
+    return response.status(200).json({
+      success: true,
+      message: users.length > 0 ? "Fetch users successfully" : "No users found",
+      users,
+    });
   } catch (error) {
-    console.error(`Error, while fetching users: ${error.message}`); 
-    next(error); 
+    console.error(`Error, while fetching users: ${error.message}`);
+    next(error);
   }
-} 
+};
 
-export const fetchUser = async(request, response, next) => {
-  try {
-    
-  } catch (error) {
-    next(error); 
+export const fetchUser = async (request, response, next) => {
+  const { id } = request.params;
+  const { isValidId } = validateUserId(id);
+  if (!isValidId) {
+    return response
+      .status(400)
+      .json({ success: false, message: "Error, invalid userId" });
   }
-}
+
+  try {
+    const user = await User.findById(id).select("-password");
+
+    if (!user) {
+      return response
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+
+    return response
+      .status(200)
+      .json({ success: true, message: "Fetch userId successfully", user });
+  } catch (error) {
+    console.error(`Error while fetching user by id: ${error.message}`);
+    next(error);
+  }
+};
 
 export const updateProfile = async (request, response, next) => {
   const { profilePicture } = request.body;
@@ -52,13 +78,11 @@ export const updateProfile = async (request, response, next) => {
 
 export const userAuthenticated = async (request, response, next) => {
   try {
-    return response
-      .status(200)
-      .json({
-        success: true,
-        message: "User is authenticated",
-        user: request.user,
-      });
+    return response.status(200).json({
+      success: true,
+      message: "User is authenticated",
+      user: request.user,
+    });
   } catch (error) {
     console.error(
       `Error, while checking user is authenticated: ${error.message}`,
