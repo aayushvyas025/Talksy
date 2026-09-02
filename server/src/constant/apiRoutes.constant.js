@@ -12,7 +12,10 @@ const apiRoutes = Object.freeze({
     user_authenticated: "/user/authenticated",
     user_account_deleted: "/user/delete/:id",
   },
-  messages: {},
+  messages: {
+    send_message: "/message/send",
+    receive_message: "/message/received",
+  },
 });
 
 export default apiRoutes;
