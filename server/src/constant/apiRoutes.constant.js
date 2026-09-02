@@ -13,8 +13,8 @@ const apiRoutes = Object.freeze({
     user_account_deleted: "/user/delete/:id",
   },
   messages: {
-    send_message: "/message/send",
-    receive_message: "/message/received",
+    send_message: "/message/send/:id",
+    receive_message: "/message/received/:id",
   },
 });
 
