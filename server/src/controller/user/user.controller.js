@@ -1,5 +1,6 @@
 import cloudinary from "#config/cloudinary/cloudinary.config";
 import User from "#model/user/user.model";
+import { uploadOnCloudinary } from "#utils/media/media.util";
 import {
   validateUserId,
   validateUserInput,
@@ -65,10 +66,10 @@ export const updateProfile = async (request, response, next) => {
   }
 
   try {
-    const uploadResponse = await cloudinary.uploader.upload(profilePicture);
+    const imageUrl = await uploadOnCloudinary(profilePicture); 
     const user = await User.findByIdAndUpdate(
       userId,
-      { profilePicture: uploadResponse.secure_url },
+      { profilePicture:imageUrl },
       { new: true, runValidators: true },
     );
 

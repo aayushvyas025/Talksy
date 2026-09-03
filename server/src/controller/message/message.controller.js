@@ -1,4 +1,6 @@
+import cloudinary from "#config/cloudinary/cloudinary.config";
 import Message from "#model/messages/message.model";
+import { uploadOnCloudinary } from "#utils/media/media.util";
 import { messageValidationFlow } from "#utils/message/message.utils";
 import { validateChatIds } from "#validation/message/message.validation";
 
@@ -49,14 +51,18 @@ export const sendMessage = async (request, response, next) => {
   }
 
   try {
+    const imageUrl = await uploadOnCloudinary(image);
+
     const newMessage = new Message({
       senderId,
       receiverId,
       text,
-      image,
+      image:imageUrl,
     });
-   
+
     await newMessage.save();
+
+    // todo: Real time Message functionality with Socket.io 
 
     return response.status(201).json({
       success: true,
