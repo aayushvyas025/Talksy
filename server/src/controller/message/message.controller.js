@@ -1,5 +1,9 @@
 import Message from "#model/messages/message.model";
-import { validateUserId } from "#validation/user/user.validation";
+import { messageValidationFlow } from "#utils/message/message.utils";
+import {
+  validateUserId,
+  validateUserInput,
+} from "#validation/user/user.validation";
 
 export const getMessage = async (request, response, next) => {
   const { id: receiverId } = request.params;
@@ -33,7 +37,52 @@ export const getMessage = async (request, response, next) => {
 };
 
 export const sendMessage = async (request, response, next) => {
+  const { _id: receiverId } = request.params;
+  const { _id: senderId } = request.user;
+  const { text, image } = request.body;
+
+  messageValidationFlow({ senderId, receiverId, text, image });
+
+  // if (!validSenderId || !validReceiverId) {
+  //   return response
+  //     .status(400)
+  //     .json({ success: false, message: "Error, invalid userId" });
+  // }
+
+  // if (!validText) {
+  //   return response
+  //     .status(400)
+  //     .json({ success: false, message: "Error, invalid message" });
+  // }
+
+  //  if (senderId.toString() === receiverId.toString()) {
+  //   return response.status(400).json({
+  //     success: false,
+  //     message: "You cannot send a message to yourself",
+  //   });
+  // }
+
   try {
+    const newMessage = new Message({
+      senderId,
+      receiverId,
+      text,
+      image,
+    });
+
+    if (!newMessage) {
+      return response
+        .status(400)
+        .json({ success: false, message: "Error, invalid message" });
+    }
+
+    await newMessage.save();
+
+    return response.status(201).json({
+      success: true,
+      message: "Message send successfully",
+      newMessage,
+    });
   } catch (error) {
     console.error(`Error, while sending message: ${error.message}`);
     next(error);
