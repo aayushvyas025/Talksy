@@ -1,8 +1,7 @@
-import { AuthPage, HomePage, ProfilePage, SettingPage } from "@/pages";
-import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { AuthPage, HomePage, ProfilePage, SettingPage } from "@/pages";
 
-function mainRoutes() {
+function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
@@ -13,4 +12,4 @@ function mainRoutes() {
   );
 }
 
-export default mainRoutes;
+export default AppRoutes;

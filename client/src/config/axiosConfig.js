@@ -5,7 +5,7 @@ const { applicationMode, backendBaseUrl } = envConfig;
 
 const API = axios.create({
   baseURL: applicationMode === "production" ? "/talksy/api/v1" : backendBaseUrl,
-  
+  withCredentials:true
 });
 
 export default API;

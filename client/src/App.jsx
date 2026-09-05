@@ -1,11 +1,12 @@
 import React from "react";
-import envConfig from "./constant/envConfig";
+import AppRoutes from "./routes/AppRoutes";
 
-console.log(envConfig.backendBaseUrl)
 
 function App() {
 
-  return <div>App</div>;
+  return <div>
+    <AppRoutes />
+  </div>;
 }
 
 export default App;
