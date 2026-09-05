@@ -1,14 +1,14 @@
+import { AuthPage, HomePage, ProfilePage, SettingPage } from "@/pages";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 function mainRoutes() {
   return (
     <Routes>
-      <Route path="/" />
-      <Route path="/login" />
-      <Route path="/register" />
-      <Route path="settings" />
-      <Route path="/user/profile" />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/authentication" element={<AuthPage />} />
+      <Route path="settings" element={<SettingPage />} />
+      <Route path="/user/profile" element={<ProfilePage />} />
     </Routes>
   );
 }
