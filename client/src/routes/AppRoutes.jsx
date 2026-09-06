@@ -39,7 +39,10 @@ function AppRoutes() {
         path="/"
         element={authUser ? <HomePage /> : <Navigate to="/authentication" />}
       />
-      <Route path="/authentication" element={<AuthPage />} />
+      <Route
+        path="/authentication"
+        element={!authUser ? <AuthPage /> : <Navigate to="/" />}
+      />
       <Route path="/settings" element={<SettingPage />} />
       <Route
         path="/user/profile"
