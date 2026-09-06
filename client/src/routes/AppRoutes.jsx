@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import {
   AuthPage,
   HomePage,
@@ -9,7 +9,6 @@ import {
 import useAuthStore from "@/store/auth/authStore";
 import { useEffect } from "react";
 import { AuthLoader } from "@/components";
-
 
 function AppRoutes() {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
@@ -36,12 +35,15 @@ function AppRoutes() {
 
   return (
     <Routes>
-      <Route path="/" element={authUser ? <HomePage /> : <AuthPage />} />
+      <Route
+        path="/"
+        element={authUser ? <HomePage /> : <Navigate to="/authentication" />}
+      />
       <Route path="/authentication" element={<AuthPage />} />
       <Route path="/settings" element={<SettingPage />} />
       <Route
         path="/user/profile"
-        element={authUser ? <ProfilePage /> : <AuthPage />}
+        element={authUser ? <ProfilePage /> : <Navigate to="/authentication" />}
       />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
