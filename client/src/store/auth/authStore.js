@@ -15,6 +15,7 @@ const useAuthStore = create((set) => ({
     set({ error: null, isCheckingAuth: true });
     try {
       const { data } = await API.get(CHECK_AUTH);
+      console.log(data);
       set({ authUser: data.user });
 
       return { success: true, message: "User authenticated", user: data.user };

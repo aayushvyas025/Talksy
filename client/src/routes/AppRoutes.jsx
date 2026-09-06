@@ -21,7 +21,8 @@ function AppRoutes() {
   useEffect(() => {
     handleAuthChecking();
   }, []);
-
+ 
+  console.log({authUser})
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
