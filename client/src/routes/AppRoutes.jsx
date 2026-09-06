@@ -1,10 +1,18 @@
 import { Route, Routes } from "react-router-dom";
-import { AuthPage, HomePage, ProfilePage, SettingPage } from "@/pages";
+import {
+  AuthPage,
+  HomePage,
+  NotFoundPage,
+  ProfilePage,
+  SettingPage,
+} from "@/pages";
 import useAuthStore from "@/store/auth/authStore";
 import { useEffect } from "react";
+import { AuthLoader } from "@/components";
+
 
 function AppRoutes() {
-  const { authUser, checkAuth } = useAuthStore();
+  const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
 
   async function handleAuthChecking() {
     try {
@@ -21,14 +29,21 @@ function AppRoutes() {
   useEffect(() => {
     handleAuthChecking();
   }, []);
- 
-  console.log({authUser})
+
+  if (isCheckingAuth && !authUser) {
+    return <AuthLoader />;
+  }
+
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={authUser ? <HomePage /> : <AuthPage />} />
       <Route path="/authentication" element={<AuthPage />} />
-      <Route path="settings" element={<SettingPage />} />
-      <Route path="/user/profile" element={<ProfilePage />} />
+      <Route path="/settings" element={<SettingPage />} />
+      <Route
+        path="/user/profile"
+        element={authUser ? <ProfilePage /> : <AuthPage />}
+      />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }
