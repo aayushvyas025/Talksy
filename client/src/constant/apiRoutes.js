@@ -1,5 +1,7 @@
 const apiRoutes = Object.freeze({
-
+ auth:{
+    CHECK_AUTH:'/user/authenticated',
+ }
 })
 
 

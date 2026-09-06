@@ -4,7 +4,7 @@ import React, { Suspense } from 'react'
 function Home() {
   return (
     <Suspense>
-        <Layout></Layout>
+        <Layout>Home Page</Layout>
     </Suspense>
   )
 }

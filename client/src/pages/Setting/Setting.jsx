@@ -3,7 +3,9 @@ import React, { Suspense } from "react";
 
 function Setting() {
   return <Suspense>
-    <Layout></Layout>
+    <Layout>
+      Setting Page 
+    </Layout>
   </Suspense>;
 }
 
