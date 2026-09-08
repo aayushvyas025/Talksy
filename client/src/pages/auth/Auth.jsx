@@ -1,4 +1,4 @@
-import { AuthForm, AuthHeader } from "@/components";
+import { AuthForm, AuthHeader, FormNavigation } from "@/components";
 import React, { Suspense, useState } from "react";
 
 function Auth() {
@@ -6,6 +6,9 @@ function Auth() {
 
   function updateFormState() {
     setFormState("login");
+    if (formState === "login") {
+      setFormState("signup");
+    }
   }
 
   return (
@@ -16,6 +19,10 @@ function Auth() {
           <div className="w-full max-w-md space-y-8">
             <AuthHeader formState={formState} />
             <AuthForm formState={formState} updateFormState={updateFormState} />
+            <FormNavigation
+              formState={formState}
+              updateFormState={updateFormState}
+            />
           </div>
         </div>
         {/* UI Design */}
