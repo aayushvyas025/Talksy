@@ -5,7 +5,7 @@ import useAuthStore from "@/store/auth/authStore";
 import FormLoader from "../Loader/FormLoader";
 import SubmitButton from "../Button/SubmitButton";
 
-function AuthForm({ formState, updateFormState }) {
+function AuthForm({ formState }) {
   const [userInfo, setUserInfo] = useState({
     fullName: "",
     email: "",
@@ -52,7 +52,7 @@ function AuthForm({ formState, updateFormState }) {
         onClick={() => setShowPassword(!showPassword)}
       />
       <SubmitButton
-        loading={isSigningUp || isLoggingIn}
+        loading={formState === "signup" ? isSigningUp : isLoggingIn}
         disabled={formState === "signup" ? isSigningUp : isLoggingIn}
         text={formState === "signup" ? "Create Account" : ""}
       />
