@@ -5,10 +5,7 @@ function Auth() {
   const [formState, setFormState] = useState("signup");
 
   function updateFormState() {
-    setFormState("login");
-    if (formState === "login") {
-      setFormState("signup");
-    }
+    setFormState((prevState) => (prevState === "signup" ? "login" : "signup"));
   }
 
   return (
