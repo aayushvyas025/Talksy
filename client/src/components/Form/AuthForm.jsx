@@ -2,6 +2,8 @@ import { useState } from "react";
 import Input from "../Input/Input";
 import { Eye, EyeOff, Mail, User } from "lucide-react";
 import useAuthStore from "@/store/auth/authStore";
+import FormLoader from "../Loader/FormLoader";
+import SubmitButton from "../Button/SubmitButton";
 
 function AuthForm({ formState, updateFormState }) {
   const [userInfo, setUserInfo] = useState({
@@ -49,17 +51,11 @@ function AuthForm({ formState, updateFormState }) {
         }
         onClick={() => setShowPassword(!showPassword)}
       />
-      <button
-        type="submit"
-        className="btn btn-primary w-full"
+      <SubmitButton
+        loading={isSigningUp || isLoggingIn}
         disabled={formState === "signup" ? isSigningUp : isLoggingIn}
-      >
-        {isSigningUp || isLoggingIn
-          ? "Loading..."
-          : formState === "signup"
-            ? "Create Account"
-            : ""}
-      </button>
+        text={formState === "signup" ? "Create Account" : ""}
+      />
     </form>
   );
 }
