@@ -1,11 +1,13 @@
 import toast from "react-hot-toast";
 
-export function success(message) {
+export function showSuccessToast(message) {
   toast.success(message);
   return; 
 }
 
-export function error(message) {
+export function showErrorToast(message) {
   toast.error(message);
   return; 
 }
+
+
