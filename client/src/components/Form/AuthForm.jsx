@@ -14,18 +14,18 @@ function AuthForm({ formState }) {
   });
   const [showPassword, setShowPassword] = useState(false);
 
-  const { isSigningUp, isLoggingIn } = useAuthStore();
+  const { isSigningUp, isLoggingIn, signupUser } = useAuthStore();
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    const { success, field } = validateUserInfo({
+    const { success: validInput, field } = validateUserInfo({
       formState,
       fullName: userInfo.fullName,
       email: userInfo.email,
       password: userInfo.password,
     });
 
-    if (!success) {
+    if (!validInput) {
       showErrorToast(field);
       return;
     }
@@ -33,7 +33,18 @@ function AuthForm({ formState }) {
     if (formState !== "signup") {
     }
 
-    showSuccessToast("User signup successfully");
+    const { success, message } = await signupUser({
+      fullName: userInfo.fullName,
+      email: userInfo.email,
+      password: userInfo.password,
+    });
+
+    if (!success) {
+      showErrorToast(message);
+      return; 
+    }
+
+    showSuccessToast(message);
 
     setUserInfo({ fullName: "", email: "", password: "" });
   }
