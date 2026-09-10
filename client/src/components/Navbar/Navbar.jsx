@@ -1,7 +1,7 @@
 import useAuthStore from "@/store/auth/authStore";
 import React from "react";
 import AppLogo from "../AppLogo/AppLogo";
-import { Settings, User } from "lucide-react";
+import { LogOut, Settings, User } from "lucide-react";
 import NavLinks from "../NavLinks/NavLinks";
 import Button from "../Button/Button";
 
@@ -17,8 +17,11 @@ function Navbar() {
             <NavLinks to={"/settings"} icon={Settings} title={"Settings"} />
             {authUser && (
               <>
-                <NavLinks to={"/user/profile"} icon={User} title={"User"} /> 
-                  <Button />
+                <NavLinks to={"/user/profile"} icon={User} title={"User"} />
+                <Button style={"flex gap-2 items-center"} onClick={logoutUser}>
+                  <LogOut className="size-5" />
+                  <span className="hidden sm:inline">Logout</span>
+                </Button>
               </>
             )}
           </div>
