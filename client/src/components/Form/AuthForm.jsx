@@ -109,7 +109,7 @@ function AuthForm({ formState }) {
       <SubmitButton
         loading={formState === "signup" ? isSigningUp : isLoggingIn}
         disabled={formState === "signup" ? isSigningUp : isLoggingIn}
-        text={formState === "signup" ? "Create Account" : ""}
+        text={formState === "signup" ? "Create Account" : "Login"}
       />
     </form>
   );

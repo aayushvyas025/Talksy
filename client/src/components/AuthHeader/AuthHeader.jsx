@@ -9,10 +9,10 @@ function AuthHeader({ formState }) {
           <MessageSquare className="size-6 text-primary" />
         </div>
         <div className="text-2xl font-bold mt-2">
-          {formState === "signup" ? "Create Account" : ""}
+          {formState === "signup" ? "Create Account" : "Welcome Back"}
         </div>
         <div className="text-base-content/60">
-          {formState === "signup" ? "Get started with your free account" : ""}
+          {formState === "signup" ? "Get started with your free account" : "Sign in to your account"}
         </div>
       </div>
     </div>
