@@ -1,12 +1,20 @@
+import { create } from "zustand";
 import API from "@/config/axiosConfig";
 import apiRoutes from "@/constant/apiRoutes";
-import { create } from "zustand";
 
-const { CHECK_AUTH, SIGNUP_USER, LOGIN_USER, LOGOUT_USER } = apiRoutes.auth;
+const {
+  CHECK_AUTH,
+  SIGNUP_USER,
+  LOGIN_USER,
+  LOGOUT_USER,
+  UPDATE_PROFILE,
+  DELETE_USER,
+} = apiRoutes.auth;
 
 const useAuthStore = create((set) => ({
   authUser: null,
   error: null,
+  isUserDeleted: false,
   isCheckingAuth: true,
   isSigningUp: false,
   isLoggingIn: false,
@@ -58,12 +66,12 @@ const useAuthStore = create((set) => ({
     try {
       const { data } = await API.post(LOGIN_USER, { email, password });
       set({ authUser: data?.user, error: null });
-      return { success: true, message: data.message, loginUser: data?.user };
+      return { success: true, message: data.message, user: data?.user };
     } catch (error) {
       const message = error.response?.data?.message || "Login user failed";
       console.error(`Error, while login user: ${error.message}`);
       set({ error: message, authUser: null });
-      return { success: false, message, loginUser: null };
+      return { success: false, message, user: null };
     } finally {
       set({ isLoggingIn: false });
     }
@@ -81,6 +89,45 @@ const useAuthStore = create((set) => ({
       return { success: false, message, user: null };
     } finally {
       set({ isLoggingOut: false });
+    }
+  },
+  updateProfile: async (profilePicture) => {
+    set({ isUpdatingProfile: true, error: null });
+    try {
+      const { data } = await API.put(UPDATE_PROFILE, { profilePicture });
+      set((state) => ({
+        authUser: state.authUser
+          ? { ...state.authUser, profilePicture: data?.profilePicture }
+          : null,
+        error: null,
+      }));
+      return {
+        success: true,
+        message: data.message,
+        profilePic: data?.profilePicture,
+      };
+    } catch (error) {
+      const message =
+        error?.response?.data?.message || "Error, updating profile";
+      console.error(`Error, while updating profile: ${error.message}`);
+      set({ error: message, authUser: null });
+      return { success: false, message, authUser: null };
+    } finally {
+      set({ isUpdatingProfile: false });
+    }
+  },
+  userAccountDelete: async () => {
+    set({ error: null, isCheckingAuth: true, isUserDeleted: true });
+    try {
+      const { data } = await API.delete(DELETE_USER);
+      set({ authUser: null, error: null });
+      return { success: true, message: data.message };
+    } catch (error) {
+      const message = error.response?.data?.message || "Error, deleting user";
+      console.error(`Error, while deleting user: ${error.message}`);
+      set({ error: message, authUser: null });
+    } finally {
+      set({ isCheckingAuth: false, isUserDeleted: false });
     }
   },
 }));

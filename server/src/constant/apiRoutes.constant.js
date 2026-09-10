@@ -10,7 +10,7 @@ const apiRoutes = Object.freeze({
     fetch_user_id: "/user/fetch/:id",
     update_profile: "/user/profile/update",
     user_authenticated: "/user/authenticated",
-    user_account_deleted: "/user/delete/:id",
+    user_account_deleted: "/user/delete",
   },
   messages: {
     send_message: "/message/send/:id",
