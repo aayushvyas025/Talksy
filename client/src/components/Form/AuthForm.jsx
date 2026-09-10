@@ -14,7 +14,33 @@ function AuthForm({ formState }) {
   });
   const [showPassword, setShowPassword] = useState(false);
 
-  const { isSigningUp, isLoggingIn, signupUser } = useAuthStore();
+  const { isSigningUp, isLoggingIn, signupUser, loginUser } = useAuthStore();
+
+  async function handleSignupUser({ fullName, email, password }) {
+    const { success, message } = await signupUser({
+      fullName,
+      email,
+      password,
+    });
+
+    if (!success) {
+      showErrorToast(message);
+      return;
+    }
+
+    showSuccessToast(message);
+    return true;
+  }
+
+  async function handleLoginUser({ email, password }) {
+    const { success, message } = await loginUser({ email, password });
+    if (!success) {
+      showErrorToast(message);
+      return;
+    }
+    showSuccessToast(message);
+    return true;
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -29,24 +55,20 @@ function AuthForm({ formState }) {
       showErrorToast(field);
       return;
     }
-
-    if (formState !== "signup") {
+    let success;
+    formState === "signup"
+      ? (success = await handleSignupUser({
+          fullName: userInfo.fullName,
+          email: userInfo.email,
+          password: userInfo.password,
+        }))
+      : (success = await handleLoginUser({
+          email: userInfo.email,
+          password: userInfo.password,
+        }));
+    if (success) {
+      setUserInfo({ fullName: "", email: "", password: "" });
     }
-
-    const { success, message } = await signupUser({
-      fullName: userInfo.fullName,
-      email: userInfo.email,
-      password: userInfo.password,
-    });
-
-    if (!success) {
-      showErrorToast(message);
-      return; 
-    }
-
-    showSuccessToast(message);
-
-    setUserInfo({ fullName: "", email: "", password: "" });
   }
 
   return (
