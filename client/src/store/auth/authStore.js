@@ -117,17 +117,22 @@ const useAuthStore = create((set) => ({
     }
   },
   userAccountDelete: async () => {
-    set({ error: null, isCheckingAuth: true, isUserDeleted: true });
+    set({ error: null, isUserDeleted: true });
     try {
       const { data } = await API.delete(DELETE_USER);
       set({ authUser: null, error: null });
-      return { success: true, message: data.message };
+      return {
+        success: true,
+        message: data.message || "Account deleted successfully",
+        user: null,
+      };
     } catch (error) {
       const message = error.response?.data?.message || "Error, deleting user";
       console.error(`Error, while deleting user: ${error.message}`);
       set({ error: message, authUser: null });
+      return { success: false, message, user: null };
     } finally {
-      set({ isCheckingAuth: false, isUserDeleted: false });
+      set({ isUserDeleted: false });
     }
   },
 }));

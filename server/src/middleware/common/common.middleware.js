@@ -4,7 +4,6 @@ import envVariables from "#constant/envs.constant";
 import cookieParser from "cookie-parser";
 
 const { nodeEnvironment, clientBaseUrl } = envVariables;
-console.log(nodeEnvironment, clientBaseUrl); 
 
 function setupCommonMiddleware(app) {
   app.use(express.json());

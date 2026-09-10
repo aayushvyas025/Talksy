@@ -13,41 +13,39 @@ import { AuthLoader } from "@/components";
 function AppRoutes() {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
 
-  async function handleAuthChecking() {
-    try {
-      const { success, message } = await checkAuth();
-      if (!success) {
-        console.error(message);
-      }
-    } catch (error) {
-      console.error(`Error, checking auth: ${error.message}`);
-      throw error;
-    }
-  }
-
   useEffect(() => {
-    handleAuthChecking();
-  }, []);
+    const { success, message } = checkAuth();
+    if (!success) {
+      console.error(message);
+    }
+  }, [checkAuth]);
 
   if (isCheckingAuth && !authUser) {
     return <AuthLoader />;
   }
-
   return (
     <Routes>
       <Route
         path="/"
-        element={authUser ? <HomePage /> : <Navigate to="/authentication" />}
+        element={
+          authUser ? <HomePage /> : <Navigate to="/authentication" replace />
+        }
       />
+
       <Route
         path="/authentication"
-        element={!authUser ? <AuthPage /> : <Navigate to="/" />}
+        element={authUser ? <Navigate to="/" replace /> : <AuthPage />}
       />
+
       <Route path="/settings" element={<SettingPage />} />
+
       <Route
         path="/user/profile"
-        element={authUser ? <ProfilePage /> : <Navigate to="/authentication" />}
+        element={
+          authUser ? <ProfilePage /> : <Navigate to="/authentication" replace />
+        }
       />
+
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
