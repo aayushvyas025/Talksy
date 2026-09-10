@@ -1,4 +1,5 @@
 import { AuthForm, AuthHeader, FormNavigation } from "@/components";
+import AuthImagePattern from "@/components/AuthImagePattern/AuthImagePattern";
 import React, { Suspense, useState } from "react";
 
 function Auth() {
@@ -23,6 +24,10 @@ function Auth() {
           </div>
         </div>
         {/* UI Design */}
+        <AuthImagePattern
+          title="Join our Community"
+          subtitle="Connect with friends, share moments, and stay in touch with your loved ones"
+        />
       </div>
     </Suspense>
   );
