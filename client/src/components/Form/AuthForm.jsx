@@ -56,16 +56,19 @@ function AuthForm({ formState }) {
       return;
     }
     let success;
-    formState === "signup"
-      ? (success = await handleSignupUser({
-          fullName: userInfo.fullName,
-          email: userInfo.email,
-          password: userInfo.password,
-        }))
-      : (success = await handleLoginUser({
-          email: userInfo.email,
-          password: userInfo.password,
-        }));
+    if (formState === "signup") {
+      success = await handleSignupUser({
+        fullName: userInfo.fullName,
+        email: userInfo.email,
+        password: userInfo.password,
+      });
+    } else {
+      success = await handleLoginUser({
+        email: userInfo.email,
+        password: userInfo.password,
+      });
+    }
+
     if (success) {
       setUserInfo({ fullName: "", email: "", password: "" });
     }
