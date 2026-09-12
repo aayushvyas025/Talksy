@@ -1,4 +1,5 @@
 import React from 'react'
+import DeleteAccount from '../DeleteAccount/DeleteAccount'
 
 function UserAccountInfo({user}) {
   return (
@@ -9,10 +10,11 @@ function UserAccountInfo({user}) {
                 <span>Member Since</span> 
                 <span>{user.createdAt?.split("T")[0]}</span>
             </div>
-            <div className='flex items-center justify-between py-2'> 
+            <div className='flex items-center justify-between py-2 border-b border-zinc-400'> 
                 <span>Account Active</span> 
                 <span className='text-green-500'>Active</span>
             </div>
+            <DeleteAccount />
         </div>
     </div>
   )

@@ -1,4 +1,5 @@
 import { AuthUserInfo, ProfileAvatar, ProfileHeader } from "@/components";
+import DeleteAccount from "@/components/DeleteAccount/DeleteAccount";
 import Layout from "@/Layout/Layout";
 import useAuthStore from "@/store/auth/authStore";
 import React, { Suspense } from "react";
@@ -20,7 +21,7 @@ function Profile() {
               source={authUser?.profilePicture}
               isUpdating={isUpdatingProfile}
             />
-          <AuthUserInfo user={authUser} />
+          <AuthUserInfo user={authUser} /> 
           </div>
         </div>
       </Layout>
