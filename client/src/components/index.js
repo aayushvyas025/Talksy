@@ -4,4 +4,5 @@ export {default as AuthForm} from "@components/Form/AuthForm";
 export {default as AuthHeader} from "@/components/AuthHeader/AuthHeader"; 
 export {default as FormNavigation} from "@/components/Button/FormNavigation";
 export {default as ProfileHeader} from "@/components/ProfileHeader/ProfileHeader";
-export {default as ProfileAvatar} from "@/components/ProfileAvatar/ProfileAvatar"
+export {default as ProfileAvatar} from "@/components/ProfileAvatar/ProfileAvatar";
+export {default as AuthUserInfo} from "@/components/AuthUserInfo/AuthUserInfo"
