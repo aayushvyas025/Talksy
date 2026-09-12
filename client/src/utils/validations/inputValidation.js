@@ -32,4 +32,10 @@ export function validateUserInfo({ formState, fullName, email, password }) {
   return { success: true, field: null };
 }
 
+export function validateUserInput(input, field) {
+  if (typeof input !== "string" || !input.trim()) {
+    return { success: false, field: `${field} required` };
+  }
 
+  return { success: true, field: null };
+}
