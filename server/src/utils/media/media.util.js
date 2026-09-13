@@ -2,7 +2,7 @@ import cloudinary from "#config/cloudinary/cloudinary.config";
 
 export async function uploadOnCloudinary(media) {
    if (typeof media !== "string" || !media.trim()) {
-    return;
+    throw new Error("Media is required and must be a valid string");
   }
   try {
     const uploadResponse = await cloudinary.uploader.upload(media);

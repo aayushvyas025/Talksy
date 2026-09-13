@@ -96,9 +96,10 @@ const useAuthStore = create((set) => ({
     try {
       const { data } = await API.put(UPDATE_PROFILE, { profilePicture });
       set((state) => ({
-        authUser: state.authUser
-          ? { ...state.authUser, profilePicture: data?.profilePicture }
-          : null,
+        authUser: {
+          ...state.authUser,
+          profilePicture: data?.profilePicture,
+        },
         error: null,
       }));
       return {
@@ -110,8 +111,8 @@ const useAuthStore = create((set) => ({
       const message =
         error?.response?.data?.message || "Error, updating profile";
       console.error(`Error, while updating profile: ${error.message}`);
-      set({ error: message, authUser: null });
-      return { success: false, message, authUser: null };
+      set({ error: message });
+      return { success: false, message };
     } finally {
       set({ isUpdatingProfile: false });
     }
