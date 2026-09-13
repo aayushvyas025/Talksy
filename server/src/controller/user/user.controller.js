@@ -76,7 +76,7 @@ export const updateProfile = async (request, response, next) => {
     return response.status(200).json({
       success: true,
       message: `Successfully, update user profile`,
-      profilePic: user.profilePicture,
+      profilePicture: user.profilePicture,
     });
   } catch (error) {
     console.error(`Error, while update user profile: ${error.message}`);
