@@ -1,12 +1,21 @@
 import { AuthUserInfo, ProfileAvatar, ProfileHeader } from "@/components";
+import DeleteAccount from "@/components/DeleteAccount/DeleteAccount";
+import UserDeleteDialog from "@/components/UserDeleteDialog/UserDeleteDailog";
 import Layout from "@/Layout/Layout";
 import useAuthStore from "@/store/auth/authStore";
 import { showErrorToast } from "@/utils/toasts/toasts";
 import { validateUserInput } from "@/utils/validations/inputValidation";
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 
 function Profile() {
-  const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const {
+    authUser,
+    isUpdatingProfile,
+    updateProfile,
+    isUserDeleted,
+    userAccountDelete,
+  } = useAuthStore();
 
   async function handleImageUpload(event) {
     const file = event.target.files[0];
@@ -34,6 +43,13 @@ function Profile() {
   return (
     <Suspense>
       <Layout styles={"h-screen pt-20"}>
+        {isAlertOpen && (
+          <UserDeleteDialog
+            onClose={() => setIsAlertOpen(!isAlertOpen)}
+            isDeleting={isUserDeleted}
+            handleDelete={userAccountDelete}
+          />
+        )}
         <div className="max-w-2xl mx-auto p-4 py-8">
           <div className="bg-base-300 rounded-xl p-6 space-y-8">
             <ProfileHeader
@@ -46,6 +62,7 @@ function Profile() {
               onChange={handleImageUpload}
             />
             <AuthUserInfo user={authUser} />
+            <DeleteAccount handleAlert={() => setIsAlertOpen(!isAlertOpen)} />
           </div>
         </div>
       </Layout>

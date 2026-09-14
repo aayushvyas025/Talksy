@@ -14,7 +14,6 @@ function UserAccountInfo({user}) {
                 <span>Account Active</span> 
                 <span className='text-green-500'>Active</span>
             </div>
-            <DeleteAccount />
         </div>
     </div>
   )
