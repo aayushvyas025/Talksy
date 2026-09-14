@@ -11,15 +11,23 @@ function Profile() {
   async function handleImageUpload(event) {
     const file = event.target.files[0];
     if (!file) return;
+    const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2 MB
+    if (file.size > MAX_FILE_SIZE) {
+      showErrorToast("Profile picture must be smaller than 2 MB");
+      return;
+    }
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = async function () {
       const base64Image = reader.result;
-       const {success, field} = validateUserInput(base64Image, "Profile Picture"); 
-       if(!success) {
+      const { success, field } = validateUserInput(
+        base64Image,
+        "Profile Picture",
+      );
+      if (!success) {
         showErrorToast(field);
-        return;  
-       }
+        return;
+      }
       await updateProfile(base64Image);
     };
   }

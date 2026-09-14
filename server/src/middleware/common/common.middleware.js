@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 const { nodeEnvironment, clientBaseUrl } = envVariables;
 
 function setupCommonMiddleware(app) {
-  app.use(express.json());
+  app.use(express.json({limit:"10mb"}));
   app.use(cookieParser());
 
   if (nodeEnvironment === "production") {
