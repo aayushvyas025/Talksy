@@ -14,13 +14,16 @@ function AppRoutes() {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
 
   useEffect(() => {
-    const { success, message } = checkAuth();
-    if (!success) {
-      console.error(message);
+    async function handleAuthCheck() {
+      const { success, message } = await checkAuth();
+      if (!success) {
+        console.error(message);
+      }
     }
+
+    handleAuthCheck(); 
   }, [checkAuth]);
 
-  console.log(authUser)
 
   if (isCheckingAuth && !authUser) {
     return <AuthLoader />;

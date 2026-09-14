@@ -9,7 +9,8 @@ const {
   LOGOUT_USER,
   UPDATE_PROFILE,
   DELETE_USER,
-} = apiRoutes.auth;
+} = apiRoutes.auth; 
+
 
 const useAuthStore = create((set) => ({
   authUser: null,
@@ -91,10 +92,10 @@ const useAuthStore = create((set) => ({
       set({ isLoggingOut: false });
     }
   },
-  updateProfile: async (profilePicture) => {
+  updateProfile: async (image) => {
     set({ isUpdatingProfile: true, error: null });
     try {
-      const { data } = await API.put(UPDATE_PROFILE, { profilePicture });
+      const { data } = await API.put(UPDATE_PROFILE, { profilePicture: image });
       set((state) => ({
         authUser: {
           ...state.authUser,

@@ -12,18 +12,15 @@ function Profile() {
     const file = event.target.files[0];
     if (!file) return;
     const reader = new FileReader();
-    console.log("file", file)
     reader.readAsDataURL(file);
     reader.onload = async function () {
       const base64Image = reader.result;
-      console.log("Image Error",base64Image)
-      console.log(typeof base64Image); 
        const {success, field} = validateUserInput(base64Image, "Profile Picture"); 
        if(!success) {
         showErrorToast(field);
         return;  
        }
-      await updateProfile({ profilePicture: base64Image });
+      await updateProfile(base64Image);
     };
   }
   return (

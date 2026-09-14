@@ -54,7 +54,9 @@ export const updateProfile = async (request, response, next) => {
   const { profilePicture } = request.body;
   const { _id: userId } = request.user;
   const { isValid } = validateUserInput(profilePicture);
-  const { isValidId } = validateUserId(userId);
+  const { isValidId } = validateUserId(userId); 
+
+
 
   if (!isValid || !isValidId) {
     return response.status(400).json({
@@ -66,7 +68,7 @@ export const updateProfile = async (request, response, next) => {
   }
 
   try {
-    const imageUrl = await uploadOnCloudinary(profilePicture); 
+    const imageUrl = await uploadOnCloudinary(profilePicture);   
     const user = await User.findByIdAndUpdate(
       userId,
       { profilePicture:imageUrl },
