@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function useAppTheme() {
   const [theme, setTheme] = useState(
-    JSON.parse(localStorage.getItem("theme")) || "retro",
+    JSON.parse(localStorage.getItem("theme")) || "light",
   );
   function setAppTheme(theme) {
     localStorage.setItem("theme", theme);
