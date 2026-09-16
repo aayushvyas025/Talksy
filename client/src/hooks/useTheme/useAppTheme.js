@@ -1,9 +1,7 @@
 import { useState } from "react";
 
 function useAppTheme() {
-  const [theme, setTheme] = useState(
-    JSON.parse(localStorage.getItem("theme")) || "light",
-  );
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   function setAppTheme(theme) {
     localStorage.setItem("theme", theme);
     setTheme(theme);
@@ -11,5 +9,4 @@ function useAppTheme() {
   return { theme, setAppTheme };
 }
 
-
-export default useAppTheme; 
+export default useAppTheme;
