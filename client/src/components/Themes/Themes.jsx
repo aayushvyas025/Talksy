@@ -4,7 +4,9 @@ import React from 'react'
 function Themes() {
   const {theme, setTheme} = useAppTheme(); 
   return (
-    <div>Themes</div>
+    <div className='grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2'>
+      
+    </div>
   )
 }
 
