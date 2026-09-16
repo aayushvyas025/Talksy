@@ -42,7 +42,7 @@ function Profile() {
   }
   return (
     <Suspense>
-      <Layout styles={"h-screen pt-20"}>
+      <Layout styles={"pt-20"}>
         {isAlertOpen && (
           <UserDeleteDialog
             onClose={() => setIsAlertOpen(!isAlertOpen)}

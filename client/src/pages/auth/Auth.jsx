@@ -12,8 +12,7 @@ function Auth() {
 
   return (
     <Suspense>
-      <Layout>
-        <div className="min-h-screen grid lg:grid-cols-2 ">
+      <Layout styles={"min-h-screen grid lg:grid-cols-2 "}>
           {/* Auth Form */}
           <div className="flex flex-col justify-center items-center p:6 sm:p-12">
             <div className="w-full max-w-md space-y-8">
@@ -33,7 +32,6 @@ function Auth() {
             title="Join our Community"
             subtitle="Connect with friends, share moments, and stay in touch with your loved ones"
           />
-        </div>
       </Layout>
     </Suspense>
   );

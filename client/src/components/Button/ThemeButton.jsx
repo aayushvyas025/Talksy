@@ -1,8 +1,6 @@
 import React from "react";
 
 function ThemeButton({ theme, currentTheme, handleThemeChange }) {
-    console.log(currentTheme);
-    console.log(theme)
   return (
     <button
       type="button"

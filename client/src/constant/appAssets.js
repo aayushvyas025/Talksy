@@ -1,11 +1,8 @@
 export const appThemes = [
-  "light",
   "dark",
   "dracula",
   "halloween",
-  "valentine",
   "synthwave",
-  "garden",
   "forest",
   "aqua",
   "night",

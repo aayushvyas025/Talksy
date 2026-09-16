@@ -1,12 +1,11 @@
-import { useState } from "react";
+import { create } from "zustand";
 
-function useAppTheme() {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-  function setAppTheme(theme) {
+const useAppTheme = create((set) => ({
+  theme: localStorage.getItem("theme") || "light",
+  setAppTheme: (theme) => {
     localStorage.setItem("theme", theme);
-    setTheme(theme);
-  }
-  return { theme, setAppTheme };
-}
+    set({ theme });
+  },
+}));
 
 export default useAppTheme;

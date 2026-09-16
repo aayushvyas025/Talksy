@@ -3,7 +3,7 @@ import React from "react";
 
 function Layout({ children, styles }) {
   return (
-    <main className={styles}>
+    <main className={`min-h-screen ${styles}`}>
       <Navbar /> 
       {children}
     </main>

@@ -8,13 +8,10 @@ export default {
   plugins: [daisyui],
   daisyui: {
     themes:[
-      "light",
       "dark",
        "dracula",
        "halloween",
-       "valentine",
        "synthwave",
-       "garden",
        "forest",
        "aqua",
        "night",
