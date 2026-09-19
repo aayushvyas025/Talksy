@@ -6,4 +6,5 @@ export {default as FormNavigation} from "@/components/Button/FormNavigation";
 export {default as ProfileHeader} from "@/components/ProfileHeader/ProfileHeader";
 export {default as ProfileAvatar} from "@/components/ProfileAvatar/ProfileAvatar";
 export {default as AuthUserInfo} from "@/components/AuthUserInfo/AuthUserInfo";
-export {default as ThemeContainer} from "@/components/ThemeContainer/ThemeContainer"
+export {default as ThemeContainer} from "@/components/ThemeContainer/ThemeContainer";
+export {default as ChatPreview} from "@/components/ChatPreview/ChatPreview"

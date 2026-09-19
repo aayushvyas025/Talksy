@@ -3,7 +3,7 @@ import Themes from "../Themes/Themes";
 
 function ThemeContainer() {
   return (
-    <div className="container mx-auto px-4 pt-20 max-w-5xl">
+   
       <div className="space-y-6">
         <div className="flex flex-col gap-1">
           <h2 className="text font-semibold">Theme</h2>
@@ -13,7 +13,6 @@ function ThemeContainer() {
         </div>
         <Themes />
       </div>
-    </div>
   );
 }
 
