@@ -1,0 +1,10 @@
+class AuthService {
+    constructor(authRepository) {
+        this.authRepository = authRepository; 
+    }
+
+    async userSignup(user) {
+      // 
+    }
+
+}
