@@ -3,6 +3,8 @@ class AuthService {
         this.authRepository = authRepository; 
     }
 
-     
+    async userSignup(user) {
+      // 
+    }
 
 }
