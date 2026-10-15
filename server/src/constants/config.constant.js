@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const config = Object.freeze({
   port: process.env.PORT || 3001,
+  appEnv: process.env.NODE_ENV,
   api: {
     prefix: "/talksy/api",
     version: 1,
