@@ -5,8 +5,12 @@ class AuthRepository extends BaseRepository {
     super(model);
   }
 
-  async signup(data) {
-    return await this.createUser(data);
+  async createUser(data) {
+    return await this.create(data);
+  }
+
+  async findByEmail(email) {
+    return await this.findOne({ email });
   }
 }
 

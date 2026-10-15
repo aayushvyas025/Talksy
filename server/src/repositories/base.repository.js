@@ -3,9 +3,17 @@ class BaseRepository {
     this.model = model;
   }
 
-  async createUser(data) {
-    const document = new this.model.create(data);
-    return await document.save();
+  async create(data) {
+    const document =  await this.model.create(data);
+    return document;
+  }
+
+  async findOne(filter = {}, options = {}) {
+    const { populate, select } = options;
+    const query = this.model.findOne(filter);
+    if (populate) query.populate(populate);
+    if (select) query.select(select);
+    return await query.exec();
   }
 }
 
