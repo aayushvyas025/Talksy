@@ -1,36 +1,26 @@
-class AuthValidation {
-  static validator(fullname, email, password, type) {
-    if (type === "signup"(typeof fullname !== "string" || !fullname.trim())) {
-      return {
-        isValid: false,
-        message: "Full name is required",
-      };
-    }
+const { z } = require("zod");
 
-    if (
-      typeof email !== "string" ||
-      !email.trim() ||
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
-    ) {
-      return {
-        isValid: false,
-        message: "A valid email is required",
-      };
-    }
+const userSchema = z.object({
+  fullname: z
+    .string({ required_error: "Fullname is required" })
+    .trim()
+    .min(1, "Fullname is required"),
 
-    if (
-      typeof password !== "string" ||
-      !password.trim() ||
-      (type === "signup" && password.length < 6)
-    ) {
-      return {
-        isValid: false,
-        message: "Password must be at least 6 characters long",
-      };
-    }
+  email: z
+    .string({ required_error: "Email is required" })
+    .trim()
+    .toLowerCase()
+    .min(1, "Email is required")
+    .pipe(z.email("Please provide a valid email")),
 
-    return { isValid: true };
-  }
-}
+  password: z
+    .string({
+      required_error: "Password is required",
+    })
+    .trim()
+    .min(6, "Password should be at least 6 characters long"),
 
-module.exports = AuthValidation;
+  profilePic: z.string().default(""),
+});
+
+export default userSchema; 
