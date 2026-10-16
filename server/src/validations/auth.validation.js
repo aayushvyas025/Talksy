@@ -23,4 +23,4 @@ const userSchema = z.object({
   profilePic: z.string().default(""),
 });
 
-export default userSchema; 
+module.exports = userSchema; 

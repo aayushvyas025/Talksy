@@ -8,12 +8,12 @@ export async function hashingPassword(password) {
   return { hashedPassword };
 }
 
-export async function generateToken(userId, response) {
+export  function generateToken(userId, response) {
   const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: "2d",
   });
 
- await response.cookie("JWT_TOKEN", token, {
+  response.cookie("JWT_TOKEN", token, {
     maxAge: 2 * 24 * 60 * 60 * 1000,
     httpOnly: true,
     sameSite: "strict",
