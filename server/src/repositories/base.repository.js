@@ -4,7 +4,7 @@ class BaseRepository {
   }
 
   async create(data) {
-    const document =  await this.model.create(data);
+    const document = await this.model.create(data);
     return document;
   }
 
@@ -13,6 +13,15 @@ class BaseRepository {
     const query = this.model.findOne(filter);
     if (populate) query.populate(populate);
     if (select) query.select(select);
+    return await query.exec();
+  }
+
+  async findById(id, options = {}) {
+    const { populate, select } = options;
+    const query = this.model.findById(id);
+    if (populate) query.populate(populate);
+    if (select) query.select(select);
+
     return await query.exec();
   }
 }
