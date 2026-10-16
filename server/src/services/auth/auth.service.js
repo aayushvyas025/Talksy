@@ -10,7 +10,7 @@ class AuthService {
     const existingUser = await this.authRepository.findByEmail(userInfo?.email);
 
     if (existingUser) {
-      throw new Error("User already exist in Database");
+      throw new Error("User already exists in the database");
     }
 
     const { hashedPassword } = await hashingPassword(userInfo?.password);
@@ -22,7 +22,7 @@ class AuthService {
     });
 
     if (!newUser) {
-      throw new Error("Error, invalid user data");
+      throw new Error("Failed to create user");
     }
 
     return newUser;
@@ -31,10 +31,11 @@ class AuthService {
   async login(userInfo = {}) {
     const user = await this.authRepository.findByEmail(userInfo?.email);
 
-    const isPasswordCorrect = await comparePasswords(
-      password,
-      userInfo.password,
-    );
+    if (!user) {
+      throw new Error("User don't exists in the database");
+    }
+
+    const isPasswordCorrect = await comparePasswords(password, user?.password);
 
     if (!isPasswordCorrect) {
       throw new Error("Incorrect Password");
