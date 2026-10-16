@@ -23,4 +23,20 @@ const userSchema = z.object({
   profilePic: z.string().default(""),
 });
 
-module.exports = userSchema; 
+const loginSchema = z.object({
+  email: z
+    .string({ required_error: "Email is required" })
+    .trim()
+    .toLowerCase()
+    .min(1, "Email is required")
+    .pipe(z.email("Please provide a valid email")),
+
+  password: z
+    .string({
+      required_error: "Password is required",
+    })
+    .trim()
+    .min(6, "Password should be at least 6 characters long"),
+});
+
+module.exports = { userSchema, loginSchema };

@@ -1,5 +1,4 @@
 const BaseRepository = require("../base.repository");
-
 class AuthRepository extends BaseRepository {
   constructor(model) {
     super(model);
@@ -9,9 +8,11 @@ class AuthRepository extends BaseRepository {
     return await this.create(data);
   }
 
-  async findByEmail(email) {
-    return await this.findOne({ email });
+  async findByEmail(email, options={}) {
+    return await this.findOne({ email }, options);
   }
+
+ 
 }
 
 module.exports = AuthRepository;
