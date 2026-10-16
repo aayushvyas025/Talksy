@@ -8,8 +8,10 @@ const authRepository = new AuthRepository(User);
 const authService = new AuthService(authRepository);
 const authController = new AuthController(authService);
 
-router.post("/signup", authController.userSignup);
-router.post("/login", authController.loginUser);
-router.post("/logout", authController.userLogout);
+const { userSignup, userLogin, userLogout } = authController;
+
+router.post("/signup", userSignup);
+router.post("/login", userLogin);
+router.post("/logout", userLogout);
 
 module.exports = router;

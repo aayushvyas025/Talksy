@@ -35,7 +35,7 @@ class AuthService {
       throw new Error("User don't exists in the database");
     }
 
-    const isPasswordCorrect = await comparePasswords(password, user?.password);
+    const isPasswordCorrect = await comparePasswords(userInfo?.password, user?.password);
 
     if (!isPasswordCorrect) {
       throw new Error("Incorrect Password");
@@ -44,3 +44,5 @@ class AuthService {
     return user;
   }
 }
+
+module.exports = AuthService;
